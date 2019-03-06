@@ -1,19 +1,24 @@
-'use strict';
 const chalk = require('chalk');
-function print(msg) {
-    console.log(chalk.green(`❯ ${msg}`));
-  }
-  
-  function warn(msg) {
-    console.log(chalk.yellow(`❯ ${msg}`));
-  }
-  
-  function error(msg) {
-    console.log(chalk.bold.red(`❯ ${msg}`));
-  }
-  
-  function bold(msg) {
-    return chalk.bold(msg);
-  }
-  
-  module.exports = { print, warn, error, bold };
+	
+	/**
+	 * @class Logger
+	 * @description Utility class for console output
+	 */
+	class Logger {
+	    static print(message) {
+	        console.log(chalk.green(`${message}`));
+	    }
+	
+	    static warn(message) {
+	        console.log(chalk.yellow(`${message}`));
+	    }
+	
+	    static error(message) {
+	        console.log(chalk.bold.red(`${message}`));
+	    }
+	
+	    static bold(message) {
+	        return chalk.bold(message);
+	    }
+	}
+	module.exports = Logger; 
