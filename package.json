@@ -26,6 +26,7 @@
   "dependencies": {
     "async-to-gen": "^1.4.0",
     "chalk": "^2.4.2",
+    "cli-table2": "^0.2.0",
     "commander": "^2.19.0",
     "didyoumean": "^1.2.1",
     "is-async-supported": "^1.2.0",
