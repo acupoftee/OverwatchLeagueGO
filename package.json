@@ -1,0 +1,34 @@
+{
+  "name": "owl-go",
+  "version": "0.0.1",
+  "description": "Command line interface for enjoying Oveerwatch League",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acupoftee/OverwatchLeagueGO.git"
+  },
+  "keywords": [
+    "overwatch",
+    "overwatchleague",
+    "blizzard",
+    "esports",
+    "cli"
+  ],
+  "author": "Tee Diang",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/acupoftee/OverwatchLeagueGO/issues"
+  },
+  "homepage": "https://github.com/acupoftee/OverwatchLeagueGO#readme",
+  "dependencies": {
+    "async-to-gen": "^1.4.0",
+    "chalk": "^2.4.2",
+    "commander": "^2.19.0",
+    "didyoumean": "^1.2.1",
+    "is-async-supported": "^1.2.0",
+    "owl-colors": "0.0.10"
+  }
+}
