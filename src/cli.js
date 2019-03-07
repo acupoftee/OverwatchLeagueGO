@@ -1,7 +1,11 @@
 const program = require('commander');
 const chalk = require('chalk');
 const pkg = require('../package.json');
-const { MatchCommand, StandingsCommand } = require('./commands');
+const { 
+    MatchCommand, 
+    StandingsCommand,
+    TeamsCommand 
+} = require('./commands');
 const { Logger } = require('./utils')
 
 program.command("matches")
@@ -24,5 +28,16 @@ program.command("standings")
     })
     .action(() => {
         StandingsCommand.standings();
+    });
+
+program.command("teams")
+    .alias("s")
+    .on("--help", () => {
+        console.log("\n Displays all Overwatch League teams for the current season!\n");
+        console.log("Example:\n");
+        console.log(`     ${chalk`{hex('#ffde68') owl-go teams}     Lists all of this seasons Overwatch League teams`}`);
+    })
+    .action(() => {
+        TeamsCommand.teams();
     });
 program.parse(process.argv);

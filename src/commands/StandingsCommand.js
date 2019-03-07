@@ -3,7 +3,6 @@ const fetch = require("node-fetch");
 const align = require("wide-align");
 const chalk = require("chalk");
 const owl_colors = require('owl-colors');
-const { Logger } = require('../utils');
 
 const createTable = headers => {
     return new Table({
