@@ -31,15 +31,6 @@ module.exports = {
         fetch("https://api.overwatchleague.com/schedule?locale=en_US")
             .then(res => res.json())
             .then(json => {
-                // let dates = [];
-                // for (let i = 0; i < 7; i++) 
-                //     dates.push(new Date());
-
-                // const monday = dates[0].getDate() - (dates[0].getDay() === 0 ? 7 : dates[0].getDay() - 1);
-                // const days = [];
-                // for (let i = 0; i < 7; i++) 
-                //     days.push(new Date(dates[i].setDate(monday + i)).toISOString().substring(0, 10));
-
                 let currentTime = new Date().getTime();
                 let slug = null;
                 let table = null;
@@ -87,6 +78,6 @@ module.exports = {
                     }
                 })
             });
-        }
     }
+}
 
