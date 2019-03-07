@@ -1,5 +1,7 @@
 const MatchCommand = require('./MatchCommand');
+const StandingsCommand = require('./StandingsCommand');
 
 module.exports = {
-    MatchCommand
+    MatchCommand,
+    StandingsCommand
 }

@@ -22,15 +22,9 @@ const createTable = headers => {
 
 module.exports = {
     matches() {
-        let table = createTable([
-            align.center(chalk.hex('#fff').bold("MATCHES"), 68),
-            align.center(chalk.hex('#fff').bold("STATUS"), 18),
-            align.center(chalk.hex('#fff').bold("DATE"), 18)
-        ]);
-
         fetch("https://api.overwatchleague.com/schedule?locale=en_US")
             .then(res => res.json())
-            .then(json => {
+            .then(body => {
                 let currentTime = new Date().getTime();
                 let slug = null;
                 let table = null;
@@ -42,7 +36,7 @@ module.exports = {
                     }
                 }
 
-                json.data.stages.forEach(_stage => {
+                body.data.stages.forEach(_stage => {
                     if (_stage.slug === slug) {
                         stage = _stage.name;
                         _stage.weeks.forEach(_week => {
