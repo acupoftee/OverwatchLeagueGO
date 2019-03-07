@@ -33,6 +33,7 @@
     "is-async-supported": "^1.2.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",
+    "node-emoji": "^1.10.0",
     "node-fetch": "^2.3.0",
     "owl-colors": "0.0.10",
     "request": "^2.88.0",

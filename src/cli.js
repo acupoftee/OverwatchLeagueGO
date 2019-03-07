@@ -31,7 +31,7 @@ program.command("standings")
     });
 
 program.command("teams")
-    .alias("s")
+    .alias("ts")
     .on("--help", () => {
         console.log("\n Displays all Overwatch League teams for the current season!\n");
         console.log("Example:\n");
