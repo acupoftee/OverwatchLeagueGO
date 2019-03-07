@@ -39,14 +39,14 @@ module.exports = {
     teams() {
         let table = createTable([
             align.center(chalk.hex('#fff').bold('TEAM'), 34),
-            align.center(chalk.hex('#fff').bold('DIVISION'), 15)
+            align.center(chalk.hex('#fff').bold('DIVISION'), 14)
         ]);
         fetch("https://api.overwatchleague.com/v2/teams?locale=en_US")
             .then(res => res.json())
             .then(body => {
                 body.data.forEach(competitor => {
                     let team = competitor.name;
-                    let division = getDivision(competitor.divisionId);
+                    let division = getDivision(competitor.divisionId, true);
                     let {hex: teamColor} = owl_colors.getPrimaryColor(competitor.abbreviatedName);
                     table.push({
                         [align.left(chalk.bgHex(teamColor).whiteBright.bold(" " + team + " "), 26)]:
