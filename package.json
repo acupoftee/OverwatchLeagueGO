@@ -27,9 +27,15 @@
     "async-to-gen": "^1.4.0",
     "chalk": "^2.4.2",
     "cli-table2": "^0.2.0",
+    "cli-table3": "^0.5.1",
     "commander": "^2.19.0",
     "didyoumean": "^1.2.1",
     "is-async-supported": "^1.2.0",
-    "owl-colors": "0.0.10"
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.23",
+    "node-fetch": "^2.3.0",
+    "owl-colors": "0.0.10",
+    "request": "^2.88.0",
+    "wide-align": "^1.1.3"
   }
 }
