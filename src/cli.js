@@ -32,6 +32,8 @@ program.command("standings")
 
 program.command("teams")
     .alias("ts")
+    // .option("-a, --atlantic", "View Atlantic Division teams.\n")
+    // .option("-p, --pacific", "View Pacific Division teams.\n")
     .on("--help", () => {
         console.log("\n Displays all Overwatch League teams for the current season!\n");
         console.log("Example:\n");

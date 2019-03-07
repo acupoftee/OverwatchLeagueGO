@@ -3,6 +3,7 @@ const fetch = require("node-fetch");
 const align = require("wide-align");
 const chalk = require("chalk");
 const owl_colors = require('owl-colors');
+const ora = require('ora');
 
 const createTable = headers => {
     return new Table({
@@ -12,6 +13,9 @@ const createTable = headers => {
 
 module.exports = {
     standings() {
+        const spinner = ora(
+            'Loading Standings...'
+          ).start();
         let table = createTable([
             align.center(chalk.hex('#fff').bold('TEAM'), 34),
             align.center(chalk.hex('#fff').bold('W'), 9),
@@ -46,6 +50,7 @@ module.exports = {
                     }
                     resolve(1);
                 })
+                spinner.stop();
                 table.length ? console.log(`\n${table.toString()}\n`) : console.log("\n  There are no Overwatch League standings at this time.\n");
             });
     }
