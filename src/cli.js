@@ -1,7 +1,7 @@
 const program = require('commander');
 const chalk = require('chalk');
 const pkg = require('../package.json');
-const { MatchCommand } = require('./models');
+const { MatchCommand } = require('./commands');
 const { Logger } = require('./utils')
 
 program.command("matches")
