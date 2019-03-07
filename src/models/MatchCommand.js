@@ -42,6 +42,8 @@ module.exports = {
 
                 let currentTime = new Date().getTime();
                 let slug = null;
+                let table = null;
+                let stage = "";
                 for (let i = 0; i < stageData.length; i++) {
                     const stage = stageData[i];
                     if (currentTime > stage.startDate && currentTime < stage.endDate) {
@@ -51,8 +53,15 @@ module.exports = {
 
                 json.data.stages.forEach(_stage => {
                     if (_stage.slug === slug) {
+                        stage = _stage.name;
                         _stage.weeks.forEach(_week => {
                             if (currentTime > _week.startDate && currentTime < _week.endDate) {
+                                stage = `${_stage.name} ${_week.name}`;
+                                table = createTable([
+                                    align.center(chalk.hex('#fff').bold(`${stage} Matches`), 68),
+                                    align.center(chalk.hex('#fff').bold("Status"), 18),
+                                    align.center(chalk.hex('#fff').bold("Date"), 18)
+                                ]);
                                 _week.matches.forEach(_match => {
                                     let home = _match.competitors[0];
                                     let away = _match.competitors[1];
@@ -73,7 +82,7 @@ module.exports = {
                                     });
                                 });
                             }
-                        });
+                        })
                         table.length ? console.log(`\n${table.toString()}\n`) : console.log("\n  There are no Overwatch League matches this week.\n");
                     }
                 })
