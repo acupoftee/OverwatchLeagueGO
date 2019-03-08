@@ -45,8 +45,6 @@ program.command("teams")
     });
 program.command("team")
     .alias("t")
-    // .option("-a, --atlantic", "View Atlantic Division teams.\n")
-    // .option("-p, --pacific", "View Pacific Division teams.\n")
     .on("--help", () => {
         console.log("\n Displays all Overwatch League teams for the current season!\n");
         console.log("Example:\n");

@@ -1,62 +1,62 @@
 [
-    {
-      "key": "MAIN",
-      "extension": "/?locale=en_US"
-    },
-    {
-      "key": "COMPETITORS",
-      "extension": "/v2/teams?locale=en_US"
-    },
-    {
-      "key": "COMPETITOR",
-      "extension": "/v2/teams/{id}?locale=en_US"
-    },
-    {
-      "key": "RANKING",
-      "extension": "/ranking?locale=en_US"
-    },
-    {
-      "key": "STANDINGS",
-      "extension": "/standings?locale=en_US&season=2019"
-    },
-    {
-      "key": "PLAYERS",
-      "extension": "/players/?locale=en_US"
-    },
-    {
-      "key": "PLAYER",
-      "extension": "/players/{id}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers"
-    },
-    {
-      "key": "STATS",
-      "extension": "/stats/players?locale=en_US&season=2019"
-    },
-    {
-      "key": "MATCHES",
-      "extension": "/matches?locale=en_US&season=2019"
-    },
-    {
-      "key": "MATCH",
-      "extension": "/matches/{id}?locale=en_US"
-    },
-    {
-      "key": "SCHEDULE",
-      "extension": "/schedule?locale=en_US"
-    },
-    {
-      "key": "LIVE-MATCH",
-      "extension": "/live-match?locale=en_US&expand=team.content"
-    },
-    {
-      "key": "VODS",
-      "extension": "/vods?locale=en_US"
-    },
-    {
-      "key": "MAPS",
-      "extension": "/maps?locale=en_US"
-    },
-    {
-      "key": "NEWS",
-      "extension": "/news?locale=en_US&page=1"
-    }
-  ]
+  {
+    "key": "MAIN",
+    "extension": "/?locale=en_US"
+  },
+  {
+    "key": "COMPETITORS",
+    "extension": "/v2/teams?locale=en_US"
+  },
+  {
+    "key": "COMPETITOR",
+    "extension": "/v2/teams/{id}?locale=en_US"
+  },
+  {
+    "key": "RANKING",
+    "extension": "/ranking?locale=en_US"
+  },
+  {
+    "key": "STANDINGS",
+    "extension": "/standings?locale=en_US&season=2019"
+  },
+  {
+    "key": "PLAYERS",
+    "extension": "/players/?locale=en_US"
+  },
+  {
+    "key": "PLAYER",
+    "extension": "/players/{id}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers"
+  },
+  {
+    "key": "STATS",
+    "extension": "/stats/players?locale=en_US&season=2019"
+  },
+  {
+    "key": "MATCHES",
+    "extension": "/matches?locale=en_US&season=2019"
+  },
+  {
+    "key": "MATCH",
+    "extension": "/matches/{id}?locale=en_US"
+  },
+  {
+    "key": "SCHEDULE",
+    "extension": "/schedule?locale=en_US"
+  },
+  {
+    "key": "LIVE-MATCH",
+    "extension": "/live-match?locale=en_US&expand=team.content"
+  },
+  {
+    "key": "VODS",
+    "extension": "/vods?locale=en_US"
+  },
+  {
+    "key": "MAPS",
+    "extension": "/maps?locale=en_US"
+  },
+  {
+    "key": "NEWS",
+    "extension": "/news?locale=en_US&page=1"
+  }
+]

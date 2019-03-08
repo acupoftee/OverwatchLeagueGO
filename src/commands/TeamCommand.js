@@ -5,13 +5,8 @@ const chalk = require("chalk");
 const owl_colors = require('owl-colors');
 const owlapi = require('owlapi');
 const ora = require('ora');
+const { EmojiUtil } = require('../utils');
 const divisions = require('../data/divisions.json');
-
-// const createTable = headers => {
-//     return new Table({
-//         head: headers, style: { "padding-left": 0, "padding-right": 0, head: [], border: [] }
-//     });
-// };
 
 /**
  * Convert a division from ID to name or vice-versa.
@@ -56,13 +51,24 @@ module.exports = {
         });
         const owl = new owlapi('en_US');
         owl.team(name).then(team => {
+            const spinner = ora(
+                `Loading ${team.name}...`
+              ).start();
             const {hex: teamColor} = owl_colors.getPrimaryColor(team.abbr);
-            table.push([align.center(chalk.bgHex(teamColor).whiteBright.bold(" " + team.name +" \n") +
-            " " + team.location + " - " + getDivision(team.division) + " Division" + " " + "\n" +
-            " Standing: " + ordinal(team.placement), 50)]);
-            //console.log(team.name);
-            console.log(table.toString())
+            table.push([chalk.bgHex(teamColor).whiteBright.bold(team.name +" \n") +
+            team.location + " - " + getDivision(team.division) + " Division" + " " + "\n" +
+            ordinal(team.placement) + " in the Overwatch League"],
+            [align.center('Players', 60)]);
+
+            fetch(`https://api.overwatchleague.com/teams/${team.id}?locale=en_US`)
+            .then(res => res.json())
+            .then(body => {
+                body.players.forEach(player => {
+                    table.push([`${EmojiUtil.FLAG(player.nationality)} ${EmojiUtil.ROLE(player.attributes.role)} \t${player.givenName} '${chalk.whiteBright.bold(player.name)}' ${player.familyName}`]);
+                });
+                spinner.stop();
+                table.length ? console.log(`\n${table.toString()}\n`) : console.log("\n  Could not find team.\n");
+            });
         });
-        //table.length ? console.log(`\n${table.toString()}\n`) : console.log("\n  There are no Overwatch League teams at this time.\n");
     }
 }
