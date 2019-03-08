@@ -69,7 +69,26 @@ module.exports = {
                     table.push([`${EmojiUtil.FLAG(player.nationality)} ${EmojiUtil.ROLE(player.attributes.role)} \t${player.givenName} '${chalk.whiteBright.bold(player.name)}' ${player.familyName}`]);
                 });
                 spinner.stop();
-                cfonts.say(team.name.replace(" ", "|"), {
+                let newName = "";
+                //TODO find more efficient way of doing this
+                switch(team.name) {
+                    case "Los Angeles Gladiators":
+                        newName = "Los Angeles|Gladiators";
+                        break;
+                    case "Los Angeles Valiant":
+                        newName = "Los Angeles|Valiant";
+                        break;
+                    case "New York Excelsior":
+                        newName = "New York|Excelsior";
+                        break;
+                    case "San Francisco Shock":
+                        newName = "San Francisco|Shock";
+                        break;
+                    default:
+                        newName = team.name.replace(" ", "|");
+                }
+
+                cfonts.say(newName, {
                     font: 'block',              // define the font face
                     align: 'left',              // define text alignment
                     colors: [teamColor, secondColor],         // define all colors
