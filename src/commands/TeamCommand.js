@@ -57,7 +57,7 @@ module.exports = {
               ).start();
             const {hex: teamColor} = owl_colors.getPrimaryColor(team.abbr);
             const {hex: secondColor} = owl_colors.getSecondaryColor(team.abbr);
-            table.push([chalk.bgHex(teamColor).whiteBright.bold(team.name +" \n") +
+            table.push([chalk.bgHex(teamColor).whiteBright.bold(team.name) + ` (${team.abbr}) \n` +
             team.location + " - " + getDivision(team.division) + " Division" + " " + "\n" +
             ordinal(team.placement) + " in the Overwatch League"],
             [align.center('Players', 60)]);
