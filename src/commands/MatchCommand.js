@@ -11,9 +11,9 @@ const options = { weekday: "short", hour: "2-digit", minute: "2-digit" };
 const getMatch = (team_1, team_2, result_1, result_2, result) =>
     `${align.right(`${result ? chalk.hex("#f99e1a")("⋆") : " "} ${
         team_1}`, 27)} ${chalk.hex(result ? "#fff" : "#c4c4c4").bold(" " + result_1 + " ")}  ${
-    chalk.hex("#efefef")("vs")}  ${
-    chalk.hex(result ? "#c4c4c4" : "#fff").bold(" " + result_2 + " ")} ${
-    align.left(`${team_2} ${!result ? chalk.hex("#f99e1a")("⋆") : " "}`, 27)}`;
+        chalk.hex("#efefef")("vs")}  ${
+        chalk.hex(result ? "#c4c4c4" : "#fff").bold(" " + result_2 + " ")} ${
+        align.left(`${team_2} ${!result ? chalk.hex("#f99e1a")("⋆") : " "}`, 27)}`;
 
 const createTable = headers => {
     return new Table({

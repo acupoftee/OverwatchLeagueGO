@@ -47,7 +47,7 @@ module.exports = {
             align.center(chalk.hex('#fff').bold('DIVISION'), 14)
         ]);
         const spinner = ora(
-            'Loading Standings...'
+            'Loading Teams...'
           ).start();
         fetch("https://api.overwatchleague.com/v2/teams?locale=en_US")
             .then(res => res.json())

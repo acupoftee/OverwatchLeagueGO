@@ -4,7 +4,8 @@ const pkg = require('../package.json');
 const { 
     MatchCommand, 
     StandingsCommand,
-    TeamsCommand 
+    TeamsCommand,
+    TeamCommand 
 } = require('./commands');
 const { Logger } = require('./utils')
 
@@ -41,5 +42,17 @@ program.command("teams")
     })
     .action(() => {
         TeamsCommand.teams();
+    });
+program.command("team")
+    .alias("t")
+    // .option("-a, --atlantic", "View Atlantic Division teams.\n")
+    // .option("-p, --pacific", "View Pacific Division teams.\n")
+    .on("--help", () => {
+        console.log("\n Displays all Overwatch League teams for the current season!\n");
+        console.log("Example:\n");
+        console.log(`     ${chalk`{hex('#ffde68') owl-go teams}     Lists all of this seasons Overwatch League teams`}`);
+    })
+    .action((name) => {
+        TeamCommand.team(name);
     });
 program.parse(process.argv);
