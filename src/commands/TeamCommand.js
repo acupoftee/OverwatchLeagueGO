@@ -66,7 +66,7 @@ module.exports = {
             .then(res => res.json())
             .then(body => {
                 body.players.forEach(player => {
-                    table.push([`${EmojiUtil.FLAG(player.nationality)} ${EmojiUtil.ROLE(player.attributes.role)} \t${player.givenName} '${chalk.whiteBright.bold(player.name)}' ${player.familyName}`]);
+                    table.push([`${EmojiUtil.FLAG(player.nationality)} ${EmojiUtil.ROLE(player.attributes.role)} \t${chalk.gray(player.givenName)} '${chalk.whiteBright.bold(player.name)}' ${chalk.gray(player.familyName)}`]);
                 });
                 spinner.stop();
                 let newName = "";
