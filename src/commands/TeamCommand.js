@@ -6,57 +6,8 @@ const owl_colors = require('owl-colors');
 const owlapi = require('owlapi');
 const ora = require('ora');
 const cfonts = require('cfonts');
-const { EmojiUtil } = require('../utils');
-const divisions = require('../data/divisions.json');
+const { EmojiUtil, OwlUtil } = require('../utils');
 
-/**
- * Convert a division from ID to name or vice-versa.
- * @param {String|number} division Name or ID of the divison.
- * @returns {String|number} a team's division information
- */
-const getDivision = (division, abbreviated = false) => {
-    for (let i = 0; i < divisions.length; i++) {
-        const div = divisions[i];
-        if (typeof division === 'string') {
-            if (div.values.includes(division)) {
-                return div.id;
-            }
-        } else if (typeof division === 'number') {
-            let long = div.values[0];
-            if (division == div.id) {
-                if (abbreviated) {
-                    return div.abbrev;
-                }
-                return long.charAt(0).toUpperCase() + long.slice(1);
-            }
-        }
-    }
-}
-/**
-     * Finds a Competitor ID by name
-     * @param {string} val the competitor's name
-     * @returns the Competitor's ID
-     */
-const locateTeam = (val) => {
-    const key = val.toLowerCase();
-    for (let i = 0; i < teamNames.length; i++) {
-        const competitor = teamNames[i];
-        const id = competitor.id;
-
-        // return id if keys are equal
-        if (key == id) {
-            return id;
-        }
-
-        // return id if names are equal
-        for (let j = 0; j < competitor.values.length; j++) {
-            const value = competitor.values[j];
-            if (key == value) {
-                return id;
-            }
-        }
-    }
-}
 const ordinal = (number) => {
     let i = number % 10, j = number % 100;
     if (i === 1 && j !== 11) {
@@ -71,26 +22,30 @@ const ordinal = (number) => {
 }
 module.exports = {
     team(name) {
+        const spinner = ora(
+            `Loading Team...`
+        ).start();
         let table = new Table({
+            chars: { 'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗'
+         , 'bottom': '═' , 'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝'
+         , 'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼'
+         , 'right': '║' , 'right-mid': '╢' , 'middle': '│' },
             style: { "padding-left": 0, "padding-right": 0, head: [], border: [] }
         });
         const owl = new owlapi('en_US');
         owl.team(name).then(team => {
-            const spinner = ora(
-                `Loading ${team.name}...`
-            ).start();
             const { hex: teamColor } = owl_colors.getPrimaryColor(team.abbr);
             const { hex: secondColor } = owl_colors.getSecondaryColor(team.abbr);
-            table.push([chalk.bgHex(teamColor).whiteBright.bold(team.name) + ` (${team.abbr}) \n` +
-                team.location + " - " + getDivision(team.division) + " Division" + " " + "\n" +
-                ordinal(team.placement) + " in the Overwatch League"],
-                [align.center('Players', 60)]);
+            table.push([chalk.bgHex(teamColor).whiteBright.bold(team.name) + ` ${chalk.whiteBright("("+team.abbr+")")} \n` +
+                chalk.whiteBright(team.location + " - " + OwlUtil.getDivision(team.division) + " Division" + " ") + "\n" +
+                chalk.whiteBright(ordinal(team.placement) + " in the Overwatch League")],
+                [align.center(chalk.whiteBright('Players'), 60)]);
 
             fetch(`https://api.overwatchleague.com/teams/${team.id}?locale=en_US`)
                 .then(res => res.json())
                 .then(body => {
                     body.players.forEach(player => {
-                        table.push([`${EmojiUtil.FLAG(player.nationality)} ${EmojiUtil.ROLE(player.attributes.role)} \t${chalk.gray(player.givenName)} '${chalk.whiteBright.bold(player.name)}' ${chalk.gray(player.familyName)}`]);
+                        table.push([`${EmojiUtil.FLAG(player.nationality)} ${EmojiUtil.ROLE(player.attributes.role)} \t${chalk.white(player.givenName)} '${chalk.whiteBright.bold(player.name)}' ${chalk.white(player.familyName)}`]);
                     });
                     spinner.stop();
                     let newName = "";
@@ -113,16 +68,16 @@ module.exports = {
                     }
 
                     cfonts.say(newName, {
-                        font: 'block',              // define the font face
-                        align: 'left',              // define text alignment
-                        colors: [teamColor, secondColor],         // define all colors
-                        background: 'transparent',  // define the background color, you can also use `backgroundColor` here as key
-                        letterSpacing: 1,           // define letter spacing
-                        lineHeight: 1,              // define the line height
-                        space: true,                // define if the output text should have empty lines on top and on the bottom
-                        maxLength: '0',             // define how many character can be on one line
+                        font: 'block',              
+                        align: 'left',            
+                        colors: [teamColor, secondColor],         
+                        background: 'transparent',  
+                        letterSpacing: 1,        
+                        lineHeight: 1,             
+                        space: true,                
+                        maxLength: '0',            
                     });
-                    table.length ? console.log(`\n${table.toString()}\n`) : console.log("\n  Could not find team.\n");
+                    table.length ? console.log(`\n${chalk.gray(table.toString())}\n`) : console.log("\n  Could not find team.\n");
                 });
         });
     }

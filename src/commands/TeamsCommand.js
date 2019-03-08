@@ -9,6 +9,10 @@ const divisions = require('../data/divisions.json');
 
 const createTable = headers => {
     return new Table({
+        chars: { 'top': '═' , 'top-mid': '╤' , 'top-left': '╔' , 'top-right': '╗'
+        , 'bottom': '═' , 'bottom-mid': '╧' , 'bottom-left': '╚' , 'bottom-right': '╝'
+        , 'left': '║' , 'left-mid': '╟' , 'mid': '─' , 'mid-mid': '┼'
+        , 'right': '║' , 'right-mid': '╢' , 'middle': '│' },
         head: headers, style: { "padding-left": 0, "padding-right": 0, head: [], border: [] }
     });
 };
@@ -82,16 +86,16 @@ module.exports = {
                 });
                 spinner.stop();
                 cfonts.say("Overwatch|League Teams", {
-                    font: 'block',              // define the font face
-                    align: 'left',              // define text alignment
-                    colors: ['#f80', '#840'],         // define all colors
-                    background: 'transparent',  // define the background color, you can also use `backgroundColor` here as key
-                    letterSpacing: 1,           // define letter spacing
-                    lineHeight: 1,              // define the line height
-                    space: true,                // define if the output text should have empty lines on top and on the bottom
-                    maxLength: '0',             // define how many character can be on one line
+                    font: 'block',             
+                    align: 'left',              
+                    colors: ['#f80', '#840'],        
+                    background: 'transparent',  
+                    letterSpacing: 1,           
+                    lineHeight: 1,             
+                    space: true,                
+                    maxLength: '0',             
                 });
-                table.length ? console.log(`\n${table.toString()}\n`) : console.log("\n  There are no Overwatch League teams at this time.\n");
+                table.length ? console.log(`\n${chalk.gray(table.toString())}\n`) : console.log("\n  There are no Overwatch League teams at this time.\n");
             })
     },
 };

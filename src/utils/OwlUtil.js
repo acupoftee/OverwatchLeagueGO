@@ -11,392 +11,58 @@ const TeamKeys = [
     { key: 'website', value: 'website' }
 ];
 
-const Teams = [{
-    id: 7698,
-    values: [
-        "atl",
-        "atlantareign",
-        "reign",
-        "atlanta",
-        "atlreign"
-    ]
-},
-{
-    id: 4402,
-    values: [
-        "bos",
-        "bostonuprising",
-        "uprising",
-        "boston"
-    ]
-},
-{
-    id: 7692,
-    values: [
-        "cdh",
-        "chengduhunters",
-        "hunters",
-        "chengdu"
-    ]
-},
-{
-    id: 4523,
-    values: [
-        "dal",
-        "dallasfuel",
-        "fuel",
-        "dallas"
-    ]
-},
-{
-    id: 4407,
-    values: [
-        "fla",
-        "floridamayhem",
-        "mayhem",
-        "florida",
-        "flmayhem"
-    ]
-},
-{
-    id: 4406,
-    values: [
-        "gla",
-        "losangelesgladiators",
-        "lagladiators",
-        "gladiators"
-    ]
-},
-{
-    id: 7699,
-    values: [
-        "gzc",
-        "guangzhoucharge",
-        "charge",
-        "guangzhou",
-        "gzcharge"
-    ]
-},
-{
-    id: 4525,
-    values: [
-        "hou",
-        "houstonoutlaws",
-        "outlaws",
-        "houston"
-    ]
-},
-{
-    id: 7693,
-    values: [
-        "hzs",
-        "hangzhouspark",
-        "spark",
-        "hangzhou",
-        "hzspark"
-    ]
-},
-{
-    id: 4410,
-    values: [
-        "ldn",
-        "londonspitfire",
-        "spitfire",
-        "london"
-    ]
-},
-{
-    id: 4403,
-    values: [
-        "nye",
-        "newyorkexcelsior",
-        "excelsior",
-        "newyork",
-        "newyorkcity",
-        "nyc",
-        "ny",
-        "nyxl",
-        "nyexcelsior"
-    ]
-},
-{
-    id: 7694,
-    values: [
-        "par",
-        "pariseternal",
-        "eternal",
-        "paris"
-    ]
-},
-{
-    id: 4524,
-    values: [
-        "phi",
-        "phl",
-        "philadelphiafusion",
-        "fusion",
-        "philadelphia",
-        "phlfusion"
-    ]
-},
-{
-    id: 4409,
-    values: [
-        "seo",
-        "seouldynasty",
-        "dynasty",
-        "seoul"
-    ]
-},
-{
-    id: 4404,
-    values: [
-        "sfs",
-        "sanfranciscoshock",
-        "shock",
-        "sanfrancisco",
-        "sanfran",
-        "sanfranshock",
-        "sfshock"
-    ]
-},
-{
-    id: 4408,
-    values: [
-        "shd",
-        "shanghaidragons",
-        "dragons",
-        "shanghai"
-    ]
-},
-{
-    id: 7695,
-    values: [
-        "tor",
-        "torontodefiant",
-        "defiant",
-        "toronto"
-    ]
-},
-{
-    id: 4405,
-    values: [
-        "val",
-        "losangelesvaliant",
-        "lavaliant",
-        "valiant"
-    ]
-},
-{
-    id: 7696,
-    values: [
-        "van",
-        "vancouvertitans",
-        "titans",
-        "vancouver"
-    ]
-},
-{
-    id: 7697,
-    values: [
-        "was",
-        "washingtonjustice",
-        "justice",
-        "washington"
-    ]
-}
-][{
-    id: 7698,
-    values: [
-        "atl",
-        "atlantareign",
-        "reign",
-        "atlanta",
-        "atlreign"
-    ]
-},
-{
-    id: 4402,
-    values: [
-        "bos",
-        "bostonuprising",
-        "uprising",
-        "boston"
-    ]
-},
-{
-    id: 7692,
-    values: [
-        "cdh",
-        "chengduhunters",
-        "hunters",
-        "chengdu"
-    ]
-},
-{
-    id: 4523,
-    values: [
-        "dal",
-        "dallasfuel",
-        "fuel",
-        "dallas"
-    ]
-},
-{
-    id: 4407,
-    values: [
-        "fla",
-        "floridamayhem",
-        "mayhem",
-        "florida",
-        "flmayhem"
-    ]
-},
-{
-    id: 4406,
-    values: [
-        "gla",
-        "losangelesgladiators",
-        "lagladiators",
-        "gladiators"
-    ]
-},
-{
-    id: 7699,
-    values: [
-        "gzc",
-        "guangzhoucharge",
-        "charge",
-        "guangzhou",
-        "gzcharge"
-    ]
-},
-{
-    id: 4525,
-    values: [
-        "hou",
-        "houstonoutlaws",
-        "outlaws",
-        "houston"
-    ]
-},
-{
-    id: 7693,
-    values: [
-        "hzs",
-        "hangzhouspark",
-        "spark",
-        "hangzhou",
-        "hzspark"
-    ]
-},
-{
-    id: 4410,
-    values: [
-        "ldn",
-        "londonspitfire",
-        "spitfire",
-        "london"
-    ]
-},
-{
-    id: 4403,
-    values: [
-        "nye",
-        "newyorkexcelsior",
-        "excelsior",
-        "newyork",
-        "newyorkcity",
-        "nyc",
-        "ny",
-        "nyxl",
-        "nyexcelsior"
-    ]
-},
-{
-    id: 7694,
-    values: [
-        "par",
-        "pariseternal",
-        "eternal",
-        "paris"
-    ]
-},
-{
-    id: 4524,
-    values: [
-        "phi",
-        "phl",
-        "philadelphiafusion",
-        "fusion",
-        "philadelphia",
-        "phlfusion"
-    ]
-},
-{
-    id: 4409,
-    values: [
-        "seo",
-        "seouldynasty",
-        "dynasty",
-        "seoul"
-    ]
-},
-{
-    id: 4404,
-    values: [
-        "sfs",
-        "sanfranciscoshock",
-        "shock",
-        "sanfrancisco",
-        "sanfran",
-        "sanfranshock",
-        "sfshock"
-    ]
-},
-{
-    id: 4408,
-    values: [
-        "shd",
-        "shanghaidragons",
-        "dragons",
-        "shanghai"
-    ]
-},
-{
-    id: 7695,
-    values: [
-        "tor",
-        "torontodefiant",
-        "defiant",
-        "toronto"
-    ]
-},
-{
-    id: 4405,
-    values: [
-        "val",
-        "losangelesvaliant",
-        "lavaliant",
-        "valiant"
-    ]
-},
-{
-    id: 7696,
-    values: [
-        "van",
-        "vancouvertitans",
-        "titans",
-        "vancouver"
-    ]
-},
-    {
-        id: 7697,
-        values: [
-            "was",
-            "washingtonjustice",
-            "justice",
-            "washington"
-        ]
+const divisions = require('../data/divisions.json');
+const teamNames = require('../data/teamnames.json');
+
+/**
+ * Convert a division from ID to name or vice-versa.
+ * @param {String|number} division Name or ID of the divison.
+ * @returns {String|number} a team's division information
+ */
+const getDivision = (division, abbreviated = false) => {
+    for (let i = 0; i < divisions.length; i++) {
+        const div = divisions[i];
+        if (typeof division === 'string') {
+            if (div.values.includes(division)) {
+                return div.id;
+            }
+        } else if (typeof division === 'number') {
+            let long = div.values[0];
+            if (division == div.id) {
+                if (abbreviated) {
+                    return div.abbrev;
+                }
+                return long.charAt(0).toUpperCase() + long.slice(1);
+            }
+        }
     }
-];
+}
+/**
+     * Finds a Competitor ID by name
+     * @param {string} val the competitor's name
+     * @returns the Competitor's ID
+     */
+const locateTeam = (val) => {
+    const key = val.toLowerCase();
+    for (let i = 0; i < teamNames.length; i++) {
+        const competitor = teamNames[i];
+        const id = competitor.id;
+
+        // return id if keys are equal
+        if (key == id) {
+            return id;
+        }
+
+        // return id if names are equal
+        for (let j = 0; j < competitor.values.length; j++) {
+            const value = competitor.values[j];
+            if (key == value) {
+                return id;
+            }
+        }
+    }
+}
+module.exports = {
+    getDivision,
+    locateTeam
+}
