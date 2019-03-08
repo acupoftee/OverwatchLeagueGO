@@ -5,6 +5,7 @@ const chalk = require("chalk");
 const owl_colors = require('owl-colors');
 const owlapi = require('owlapi');
 const ora = require('ora');
+const cfonts = require('cfonts');
 const { EmojiUtil } = require('../utils');
 const divisions = require('../data/divisions.json');
 
@@ -55,6 +56,7 @@ module.exports = {
                 `Loading ${team.name}...`
               ).start();
             const {hex: teamColor} = owl_colors.getPrimaryColor(team.abbr);
+            const {hex: secondColor} = owl_colors.getSecondaryColor(team.abbr);
             table.push([chalk.bgHex(teamColor).whiteBright.bold(team.name +" \n") +
             team.location + " - " + getDivision(team.division) + " Division" + " " + "\n" +
             ordinal(team.placement) + " in the Overwatch League"],
@@ -67,6 +69,16 @@ module.exports = {
                     table.push([`${EmojiUtil.FLAG(player.nationality)} ${EmojiUtil.ROLE(player.attributes.role)} \t${player.givenName} '${chalk.whiteBright.bold(player.name)}' ${player.familyName}`]);
                 });
                 spinner.stop();
+                cfonts.say(team.name.replace(" ", "|"), {
+                    font: 'block',              // define the font face
+                    align: 'left',              // define text alignment
+                    colors: [teamColor, secondColor],         // define all colors
+                    background: 'transparent',  // define the background color, you can also use `backgroundColor` here as key
+                    letterSpacing: 1,           // define letter spacing
+                    lineHeight: 1,              // define the line height
+                    space: true,                // define if the output text should have empty lines on top and on the bottom
+                    maxLength: '0',             // define how many character can be on one line
+                });
                 table.length ? console.log(`\n${table.toString()}\n`) : console.log("\n  Could not find team.\n");
             });
         });

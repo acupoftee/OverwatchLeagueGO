@@ -25,6 +25,7 @@
   "homepage": "https://github.com/acupoftee/OverwatchLeagueGO#readme",
   "dependencies": {
     "async-to-gen": "^1.4.0",
+    "cfonts": "^2.4.2",
     "chalk": "^2.4.2",
     "cli-table3": "^0.5.1",
     "commander": "^2.19.0",

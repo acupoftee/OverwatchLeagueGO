@@ -3,6 +3,7 @@ const fetch = require("node-fetch");
 const align = require("wide-align");
 const chalk = require("chalk");
 const owl_colors = require('owl-colors');
+const cfonts = require('cfonts');
 const ora = require('ora');
 
 const createTable = headers => {
@@ -51,6 +52,16 @@ module.exports = {
                     resolve(1);
                 })
                 spinner.stop();
+                cfonts.say("Standings", {
+                    font: 'block',              // define the font face
+                    align: 'left',              // define text alignment
+                    colors: ['#f80', '#840'],         // define all colors
+                    background: 'transparent',  // define the background color, you can also use `backgroundColor` here as key
+                    letterSpacing: 1,           // define letter spacing
+                    lineHeight: 1,              // define the line height
+                    space: true,                // define if the output text should have empty lines on top and on the bottom
+                    maxLength: '0',             // define how many character can be on one line
+                });
                 table.length ? console.log(`\n${table.toString()}\n`) : console.log("\n  There are no Overwatch League standings at this time.\n");
             });
     }
