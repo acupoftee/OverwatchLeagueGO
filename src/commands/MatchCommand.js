@@ -74,7 +74,7 @@ module.exports = {
                             }
                         })
                         spinner.stop();
-                        cfonts.say(stage, {
+                        cfonts.say(`${stage}|Matches`, {
                             font: 'block',              // define the font face
                             align: 'left',              // define text alignment
                             colors: ['#f80', '#840'],         // define all colors
