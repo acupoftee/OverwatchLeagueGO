@@ -39,7 +39,7 @@ module.exports = {
             table.push([chalk.bgHex(teamColor).whiteBright.bold(team.name) + ` ${chalk.whiteBright("("+team.abbr+")")} \n` +
                 chalk.whiteBright(team.location + " - " + OwlUtil.getDivision(team.division) + " Division" + " ") + "\n" +
                 chalk.whiteBright(ordinal(team.placement) + " in the Overwatch League")],
-                [align.center(chalk.whiteBright('Players'), 60)]);
+                [align.center(chalk.whiteBright.bold('Players'), 60)]);
 
             fetch(`https://api.overwatchleague.com/teams/${team.id}?locale=en_US`)
                 .then(res => res.json())

@@ -62,7 +62,23 @@ const locateTeam = (val) => {
         }
     }
 }
+/**
+     * Finds a Player ID by name
+     * @param {string} val the player's name
+     * @returns {number} the Player's ID
+     */
+    const locatePlayer = (val) => {
+        const key = val.toLowerCase();
+        let id = 0;
+        players.forEach(player => {
+            if (player.name.toLowerCase() === key) {
+                id = player.id;
+            }
+        });
+        return id;
+    }
 module.exports = {
     getDivision,
-    locateTeam
+    locateTeam,
+    locatePlayer
 }
