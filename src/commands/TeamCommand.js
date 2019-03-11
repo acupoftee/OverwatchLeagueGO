@@ -6,7 +6,7 @@ const owl_colors = require('owl-colors');
 const owlapi = require('owlapi');
 const ora = require('ora');
 const cfonts = require('cfonts');
-const { EmojiUtil, OwlUtil } = require('../utils');
+const { EmojiUtil, OwlUtil, Logger } = require('../utils');
 
 const ordinal = (number) => {
     let i = number % 10, j = number % 100;
@@ -32,6 +32,11 @@ module.exports = {
          , 'right': '║' , 'right-mid': '╢' , 'middle': '│' },
             style: { "padding-left": 0, "padding-right": 0, head: [], border: [] }
         });
+        if (OwlUtil.locateTeam(name) === undefined) {
+            spinner.stop();
+            Logger.error("Could not locate team.");
+            return;
+        }
         const owl = new owlapi('en_US');
         owl.team(name).then(team => {
             const { hex: teamColor } = owl_colors.getPrimaryColor(team.abbr);
