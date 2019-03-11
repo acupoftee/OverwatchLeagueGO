@@ -5,7 +5,8 @@ const {
     MatchCommand, 
     StandingsCommand,
     TeamsCommand,
-    TeamCommand 
+    TeamCommand,
+    PlayerCommand
 } = require('./commands');
 const { Logger } = require('./utils')
 
@@ -52,5 +53,15 @@ program.command("team <name>")
     })
     .action((name) => {
         TeamCommand.team(name);
+    });
+program.command("player <name>")
+    .alias("p")
+    .on("--help", () => {
+        console.log("\n Displays all Overwatch League teams for the current season!\n");
+        console.log("Example:\n");
+        console.log(`     ${chalk`{hex('#ffde68') owl-go teams}     Lists all of this seasons Overwatch League teams`}`);
+    })
+    .action((name) => {
+        PlayerCommand.player(name);
     });
 program.parse(process.argv);

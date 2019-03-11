@@ -13,6 +13,8 @@ const TeamKeys = [
 
 const divisions = require('../data/divisions.json');
 const teamNames = require('../data/teamnames.json');
+const fetch = require("node-fetch");
+const JsonUtil = require('./JsonUtil');
 
 /**
  * Convert a division from ID to name or vice-versa.
@@ -38,10 +40,10 @@ const getDivision = (division, abbreviated = false) => {
     }
 }
 /**
-     * Finds a Competitor ID by name
-     * @param {string} val the competitor's name
-     * @returns the Competitor's ID
-     */
+ * Finds a Competitor ID by name
+ * @param {string} val the competitor's name
+ * @returns the Competitor's ID
+ */
 const locateTeam = (val) => {
     const key = val.toLowerCase();
     for (let i = 0; i < teamNames.length; i++) {
@@ -63,20 +65,21 @@ const locateTeam = (val) => {
     }
 }
 /**
-     * Finds a Player ID by name
-     * @param {string} val the player's name
-     * @returns {number} the Player's ID
-     */
-    const locatePlayer = (val) => {
-        const key = val.toLowerCase();
-        let id = 0;
-        players.forEach(player => {
-            if (player.name.toLowerCase() === key) {
-                id = player.id;
-            }
-        });
-        return id;
-    }
+ * Finds a Player ID by name
+ * @param {string} val the player's name
+ * @returns {number} the Player's ID
+ */
+const locatePlayer = async (val) => {
+    const key = val.toLowerCase();
+    let id = 0;
+    const body = await JsonUtil.parse('https://api.overwatchleague.com/players');
+    body.content.forEach(player => {
+        if (player.name.toLowerCase() === key) {
+            id = player.id;
+        }
+    });
+    return id;
+}
 module.exports = {
     getDivision,
     locateTeam,

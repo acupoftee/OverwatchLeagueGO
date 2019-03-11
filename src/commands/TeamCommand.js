@@ -20,6 +20,7 @@ const ordinal = (number) => {
         return number + 'th';
     }
 }
+
 module.exports = {
     team(name) {
         const spinner = ora(
@@ -34,7 +35,7 @@ module.exports = {
         });
         if (OwlUtil.locateTeam(name) === undefined) {
             spinner.stop();
-            Logger.error("Could not locate team.");
+            Logger.error("Could not locate team. Did you make a typo?");
             return;
         }
         const owl = new owlapi('en_US');
