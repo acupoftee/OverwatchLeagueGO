@@ -43,7 +43,7 @@ program.command("teams")
     .action(() => {
         TeamsCommand.teams();
     });
-program.command("team")
+program.command("team <name>")
     .alias("t")
     .on("--help", () => {
         console.log("\n Displays all Overwatch League teams for the current season!\n");
