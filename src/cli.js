@@ -64,4 +64,38 @@ program.command("player <name>")
     .action((name) => {
         PlayerCommand.player(name);
     });
+
+    program.on('--help', () => {
+        console.log('');
+        console.log('');
+        console.log(
+          `  Welcome to ${chalk`{hex('#0069b9') OWL}`} ${chalk.red('GO')} !`
+        );
+        console.log('');
+        console.log(
+          `  Wanna follow and OWL match progress please enter: ${chalk.green('owl-go matches')}`
+        );
+        console.log(
+            `  Wanna check current League standings please enter: ${chalk.green(
+              'owl-go standings'
+            )}`
+          );
+        console.log(
+          `  Wanna check OWL player information please enter: ${chalk.green(
+            'owl-go player <name>'
+          )}`
+        );
+        console.log('');
+        console.log(
+          `  For more detailed information please refer to the GitHub page: ${chalk.green(
+            'https://github.com/acupoftee/OverwatchLeagueGO'
+          )}`
+        );
+        console.log(
+          `  Or enter ${chalk.green('owl-go game -h')}, ${chalk.green(
+            'owl-go player -h'
+          )} to get more helpful information.`
+        );
+        console.log('');
+      });
 program.parse(process.argv);
