@@ -1,19 +1,5 @@
-const TeamKeys = [
-    { key: 'id', value: 'id' },
-    { key: 'name', value: 'name' },
-    { key: 'abbr', value: 'abbreviatedName' },
-    { key: 'division', value: 'divisionId' },
-    { key: 'location', value: 'location' },
-    { key: 'primaryColor', value: 'colors.primary.color' },
-    { key: 'secondaryColor', value: 'colors.secondary.color' },
-    { key: 'tertiaryColor', value: 'colors.tertiary.color' },
-    { key: 'placement', value: 'placement' },
-    { key: 'website', value: 'website' }
-];
-
 const divisions = require('../data/divisions.json');
 const teamNames = require('../data/teamnames.json');
-const fetch = require("node-fetch");
 const JsonUtil = require('./JsonUtil');
 
 /**
@@ -80,8 +66,17 @@ const locatePlayer = async (val) => {
     });
     return id;
 }
+
+/* Capitalizes the first letter in a message
+* @param {string} message 
+* @returns {string} a string with a capitalized letter
+*/
+const capitalize = (message) => {
+   return message.charAt(0).toUpperCase() + message.slice(1);
+}
 module.exports = {
     getDivision,
     locateTeam,
-    locatePlayer
+    locatePlayer,
+    capitalize
 }
