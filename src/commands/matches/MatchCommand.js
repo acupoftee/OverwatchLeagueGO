@@ -6,15 +6,16 @@ const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const stageData = require('../../data/stages.json');
+const emojis = require('node-emoji');
 
 const options = { weekday: "short", hour: "2-digit", minute: "2-digit" };
 
 const getMatch = (team_1, team_2, result_1, result_2, result) =>
-    `${align.right(`${result ? chalk.hex("#f99e1a")("⋆") : " "} ${
+    `${align.right(`${result ? chalk.hex("#f99e1a")('♔') : " " } ${
         team_1}`, 27)} ${chalk.hex(result ? "#fff" : "#c4c4c4").bold(" " + result_1 + " ")}  ${
         chalk.hex("#efefef")("vs")}  ${
         chalk.hex(result ? "#c4c4c4" : "#fff").bold(" " + result_2 + " ")} ${
-        align.left(`${team_2} ${!result ? chalk.hex("#f99e1a")("⋆") : " "}`, 27)}`;
+        align.left(`${team_2} ${!result ? chalk.hex("#f99e1a")('♔') : " "}`, 27)}`;
 
 const createTable = headers => {
     return new Table({
@@ -88,7 +89,7 @@ module.exports = {
                             space: true,                
                             maxLength: '0',             
                         });
-                        table.length ? console.log(`\n${chalk.gray(table.toString())}\n`) : console.log("\n  There are no Overwatch League matches this week.\n");
+                        table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log("\n  There are no Overwatch League matches this week.\n");
                     }
                 })
             });

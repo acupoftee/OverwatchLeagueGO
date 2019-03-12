@@ -51,7 +51,7 @@ module.exports = {
                 .then(res => res.json())
                 .then(body => {
                     body.players.forEach(player => {
-                        table.push([`${EmojiUtil.FLAG(player.nationality)} ${EmojiUtil.ROLE(player.attributes.role)} \t${chalk.white(player.givenName)} '${chalk.whiteBright.bold(player.name)}' ${chalk.white(player.familyName)}`]);
+                        table.push([`${EmojiUtil.FLAG(player.nationality)}  ${EmojiUtil.ROLE(player.attributes.role)}   ${chalk.white(player.givenName)} '${chalk.whiteBright.bold(player.name)}' ${chalk.white(player.familyName)}`]);
                     });
                     spinner.stop();
                     let newName = "";
@@ -83,7 +83,7 @@ module.exports = {
                         space: true,                
                         maxLength: '0',            
                     });
-                    table.length ? console.log(`\n${chalk.gray(table.toString())}\n`) : console.log("\n  Could not find team.\n");
+                    table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log("\n  Could not find team.\n");
                 });
         });
     }

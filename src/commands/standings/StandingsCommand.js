@@ -15,7 +15,6 @@ const createTable = headers => {
         head: headers, style: { "padding-left": 0, "padding-right": 0, head: [], border: [] }
     });
 };
-
 module.exports = {
     standings() {
         const spinner = ora(
@@ -66,7 +65,7 @@ module.exports = {
                     space: true,                
                     maxLength: '0',             
                 });
-                table.length ? console.log(`\n${chalk.gray(table.toString())}\n`) : console.log("\n  There are no Overwatch League standings at this time.\n");
+                table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log("\n  There are no Overwatch League standings at this time.\n");
             });
     }
 };

@@ -2,8 +2,8 @@ const program = require('commander');
 const chalk = require('chalk');
 const pkg = require('../package.json');
 const didYouMean = require('didyoumean');
-const { 
-    MatchCommand, 
+const {
+    MatchCommand,
     StandingsCommand,
     TeamsCommand,
     TeamCommand,
@@ -66,55 +66,55 @@ program.command("player <name>")
         PlayerCommand.player(name);
     });
 
-    program.on('--help', () => {
-        console.log('');
-        console.log('');
-        console.log(
-          `  Welcome to ${chalk`{hex('#218ffe') OWL}`} ${chalk.red('GO')} !`
-        );
-        console.log('');
-        console.log(
-          `  Wanna follow and OWL match progress please enter: ${chalk.green('owl-go matches')}`
-        );
-        console.log(
-            `  Wanna check current League standings please enter: ${chalk.green(
-              'owl-go standings'
-            )}`
-          );
-        console.log(
-          `  Wanna check OWL player information please enter: ${chalk.green(
+program.on('--help', () => {
+    console.log('');
+    console.log('');
+    console.log(
+        `  Welcome to ${chalk`{hex('#218ffe') OWL}`} ${chalk.red('GO')} !`
+    );
+    console.log('');
+    console.log(
+        `  Wanna follow and OWL match progress please enter: ${chalk.green('owl-go matches')}`
+    );
+    console.log(
+        `  Wanna check current League standings please enter: ${chalk.green(
+            'owl-go standings'
+        )}`
+    );
+    console.log(
+        `  Wanna check OWL player information please enter: ${chalk.green(
             'owl-go player <name>'
-          )}`
-        );
-        console.log('');
-        console.log(
-          `  For more detailed information please refer to the GitHub page: ${chalk.green(
+        )}`
+    );
+    console.log('');
+    console.log(
+        `  For more detailed information please refer to the GitHub page: ${chalk.green(
             'https://github.com/acupoftee/OverwatchLeagueGO'
-          )}`
-        );
-        console.log(
-          `  Or enter ${chalk.green('owl-go game -h')}, ${chalk.green(
+        )}`
+    );
+    console.log(
+        `  Or enter ${chalk.green('owl-go game -h')}, ${chalk.green(
             'owl-go player -h'
-          )} to get more helpful information.`
-        );
-        console.log('');
-      });
+        )} to get more helpful information.`
+    );
+    console.log('');
+});
 
-      program.command('*').action(command => {
-        Logger.error(`Unknown command: ${Logger.bold(command)}`);
-      
-        const commandNames = program.commands
-          .map(c => c._name)
-          .filter(name => name !== '*');
-      
-        const closeMatch = didYouMean(command, commandNames);
-      
-        if (closeMatch) {
-          Logger.error(`Did you mean ${Logger.bold(closeMatch)} ?`);
-        }
-      
-        process.exit(1);
-      });
-      
-      if (process.argv.length === 2) program.help();
+program.command('*').action(command => {
+    Logger.error(`Unknown command: ${Logger.bold(command)}`);
+
+    const commandNames = program.commands
+        .map(c => c._name)
+        .filter(name => name !== '*');
+
+    const closeMatch = didYouMean(command, commandNames);
+
+    if (closeMatch) {
+        Logger.error(`Did you mean ${Logger.bold(closeMatch)} ?`);
+    }
+
+    process.exit(1);
+});
+
+if (process.argv.length === 2) program.help();
 program.parse(process.argv);

@@ -5,8 +5,8 @@ const chalk = require("chalk");
 const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
-const URL = require('url')
-const { OwlUtil, Logger } = require('../../utils');
+const stringz = require('stringz');
+const { OwlUtil, Logger, EmojiUtil } = require('../../utils');
 
 // const alignCenter = columns =>
 //   columns.map(content => ({ content, hAlign: 'center', vAlign: 'center' }));
@@ -51,7 +51,7 @@ module.exports = {
 
 
                 table.push([{ colSpan: 7, content: `${chalk.bgHex(teamColor).whiteBright.bold(team)} ${chalk.white('#'+player.attributes.player_number)} ${player.givenName} '${chalk.whiteBright.bold(player.name)}' ${player.familyName} `, hAlign: 'center' }])
-                table.push([{ colSpan: 7, content: `${player.homeLocation}, ${OwlUtil.capitalize(player.attributes.role)} Player`, hAlign: 'center'}]);
+                table.push([{ colSpan: 7, content: `${EmojiUtil.FLAG(player.nationality)}  ${EmojiUtil.ROLE(player.attributes.role)}  ${player.homeLocation}, ${OwlUtil.capitalize(player.attributes.role)} Player`, hAlign: 'center'}]);
                 table.push([align.center(chalk.hex('#fff').bold('Time Played'), 15),
                     align.center(chalk.hex('#fff').bold('Eliminations'), 20),
                     align.center(chalk.hex('#fff').bold('Deaths'), 15),
@@ -79,7 +79,7 @@ module.exports = {
                     space: true,                
                     maxLength: '0',            
                 });
-                table.length ? console.log(`\n${chalk.gray(table.toString())}\nStats are per 10 minutes, except for Time Played.\n`) : console.log("\n  Could not find team.\n");
+                table.length ? console.log(`${chalk.gray(table.toString())}\nStats are per 10 minutes, except for Time Played.\n`) : console.log("\n  Could not find team.\n");
             })
     }
 }

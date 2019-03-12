@@ -95,7 +95,7 @@ module.exports = {
                     space: true,                
                     maxLength: '0',             
                 });
-                table.length ? console.log(`\n${chalk.gray(table.toString())}\n`) : console.log("\n  There are no Overwatch League teams at this time.\n");
+                table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log("\n  There are no Overwatch League teams at this time.\n");
             })
     },
 };
