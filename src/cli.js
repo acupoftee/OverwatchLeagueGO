@@ -1,6 +1,7 @@
 const program = require('commander');
 const chalk = require('chalk');
 const pkg = require('../package.json');
+const didYouMean = require('didyoumean');
 const { 
     MatchCommand, 
     StandingsCommand,
@@ -69,7 +70,7 @@ program.command("player <name>")
         console.log('');
         console.log('');
         console.log(
-          `  Welcome to ${chalk`{hex('#0069b9') OWL}`} ${chalk.red('GO')} !`
+          `  Welcome to ${chalk`{hex('#218ffe') OWL}`} ${chalk.red('GO')} !`
         );
         console.log('');
         console.log(
@@ -98,4 +99,22 @@ program.command("player <name>")
         );
         console.log('');
       });
+
+      program.command('*').action(command => {
+        Logger.error(`Unknown command: ${Logger.bold(command)}`);
+      
+        const commandNames = program.commands
+          .map(c => c._name)
+          .filter(name => name !== '*');
+      
+        const closeMatch = didYouMean(command, commandNames);
+      
+        if (closeMatch) {
+          Logger.error(`Did you mean ${Logger.bold(closeMatch)} ?`);
+        }
+      
+        process.exit(1);
+      });
+      
+      if (process.argv.length === 2) program.help();
 program.parse(process.argv);
