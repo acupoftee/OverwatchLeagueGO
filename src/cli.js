@@ -47,9 +47,9 @@ program.command("teams")
 program.command("team <name>")
     .alias("t")
     .on("--help", () => {
-        console.log("\n Displays all Overwatch League teams for the current season!\n");
+        console.log("\n Displays information about a specific Overwatch League team!\n");
         console.log("Example:\n");
-        console.log(`     ${chalk`{hex('#ffde68') owl-go teams}     Lists all of this seasons Overwatch League teams`}`);
+        console.log(`     ${chalk`{hex('#ffde68') owl-go team bostonuprising}     Lists Boston Uprising's info including standing and roster`}`);
     })
     .action((name) => {
         TeamCommand.team(name);
@@ -57,9 +57,9 @@ program.command("team <name>")
 program.command("player <name>")
     .alias("p")
     .on("--help", () => {
-        console.log("\n Displays all Overwatch League teams for the current season!\n");
+        console.log("\n Displays information about a specific Overwatch League player!\n");
         console.log("Example:\n");
-        console.log(`     ${chalk`{hex('#ffde68') owl-go teams}     Lists all of this seasons Overwatch League teams`}`);
+        console.log(`     ${chalk`{hex('#ffde68') owl-go striker}     Lists Striker's stats for the current season`}`);
     })
     .action((name) => {
         PlayerCommand.player(name);
