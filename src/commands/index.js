@@ -1,8 +1,8 @@
-const MatchCommand = require('./MatchCommand');
-const StandingsCommand = require('./StandingsCommand');
-const TeamsCommand = require('./TeamsCommand');
-const TeamCommand = require('./TeamCommand');
-const PlayerCommand = require('./PlayerCommand');
+const MatchCommand = require('./matches/MatchCommand');
+const StandingsCommand = require('./standings/StandingsCommand');
+const TeamsCommand = require('./team/TeamsCommand');
+const TeamCommand = require('./teamTeamCommand');
+const PlayerCommand = require('./player/PlayerCommand');
 
 module.exports = {
     MatchCommand,
