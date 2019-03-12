@@ -6,7 +6,7 @@ const owl_colors = require('owl-colors');
 const owlapi = require('owlapi');
 const ora = require('ora');
 const cfonts = require('cfonts');
-const { EmojiUtil, OwlUtil, Logger } = require('../utils');
+const { EmojiUtil, OwlUtil, Logger } = require('../../utils');
 
 const ordinal = (number) => {
     let i = number % 10, j = number % 100;

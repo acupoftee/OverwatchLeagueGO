@@ -6,7 +6,7 @@ const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const URL = require('url')
-const { EmojiUtil, OwlUtil, Logger } = require('../utils');
+const { OwlUtil, Logger } = require('../../utils');
 
 // const alignCenter = columns =>
 //   columns.map(content => ({ content, hAlign: 'center', vAlign: 'center' }));

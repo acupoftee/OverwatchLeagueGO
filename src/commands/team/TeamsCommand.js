@@ -5,7 +5,7 @@ const chalk = require("chalk");
 const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
-const divisions = require('../data/divisions.json');
+const divisions = require('../../data/divisions.json');
 
 const createTable = headers => {
     return new Table({
