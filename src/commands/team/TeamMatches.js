@@ -5,7 +5,7 @@ const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const stageData = require('../../data/stages.json');
-const { JsonUtil, OwlUtil } = require('../../utils');
+const { JsonUtil, OwlUtil} = require('../../utils');
 
 const options = { month: "short", weekday: "short", day: "numeric", hour: "2-digit", minute: "2-digit" };
 
@@ -103,7 +103,7 @@ module.exports = {
                         maxLength: '0',
                     });
                 }
-                table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log(`\n  There's no match list for ${teamName}.\n`);
+                table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log(`\n  There's no match list for ${chalk.green(teamName)}.\n`);
             }
         })
     }

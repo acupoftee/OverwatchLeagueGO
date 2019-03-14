@@ -6,7 +6,6 @@ const ora = require('ora');
 const cfonts = require('cfonts');
 const stageData = require('../../data/stages.json');
 const { JsonUtil, OwlUtil } = require('../../utils');
-const moment_timezone = require('moment-timezone');
 
 const options = { month: "short", weekday: "short", day: "numeric", hour: "2-digit", minute: "2-digit" };
 
@@ -105,7 +104,7 @@ module.exports = {
                         maxLength: '0',
                     });
                 }
-                table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log(`\n  There are no upcoming matches for ${teamName}.\n`);
+                table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log(`\n  There are no upcoming matches for ${chalk.green(teamName)}.\n`);
             }
         })
     }
