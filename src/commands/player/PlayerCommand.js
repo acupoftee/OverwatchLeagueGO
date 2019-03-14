@@ -78,6 +78,6 @@ module.exports = {
                 });
                 table.length ? console.log(`${chalk.gray(table.toString())}\nStats are per 10 minutes, except for Time Played.\n`) : console.log("\n  Could not find team.\n");
             })
-            await PlayerCompare.playerCompare("striker", "geguri");
+            await PlayerCompare.playerCompare("striker", "danteh");
     }
 }

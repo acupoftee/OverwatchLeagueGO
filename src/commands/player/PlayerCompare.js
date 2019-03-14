@@ -51,6 +51,7 @@ module.exports = {
         firstHealing = body.data.stats.all.healing_avg_per_10m.toFixed(2);
         firstUltimates = body.data.stats.all.ultimates_earned_avg_per_10m.toFixed(2);
         firstBlows = body.data.stats.all.final_blows_avg_per_10m.toFixed(2);
+        firstTimePlayed = toTimeString(body.data.stats.all.time_played_total);
 
         // load second player
         body = await JsonUtil.parse(`https://api.overwatchleague.com/players/${secondPlayerId}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers`);
@@ -63,14 +64,29 @@ module.exports = {
         secondHealing = body.data.stats.all.healing_avg_per_10m.toFixed(2);
         secondUltimates = body.data.stats.all.ultimates_earned_avg_per_10m.toFixed(2);
         secondBlows = body.data.stats.all.final_blows_avg_per_10m.toFixed(2);
+        secondTimePlayed = toTimeString(body.data.stats.all.time_played_total);
 
         // create first header : player1 vs player2
-        table.push([{ content: `${chalk.bgHex(firstColor).whiteBright.bold(firstTeam)} ${EmojiUtil.ROLE(firstPlayer.attributes.role)}  ${firstPlayer.givenName} '${chalk.whiteBright.bold(firstPlayer.name)}' ${firstPlayer.familyName} vs. ${
-            secondPlayer.givenName} '${chalk.whiteBright.bold(secondPlayer.name)}' ${secondPlayer.familyName} ${EmojiUtil.ROLE(secondPlayer.attributes.role)}  ${chalk.bgHex(secondColor).whiteBright.bold(secondTeam)} `, hAlign: 'center' }])
+        table.push([{ colSpan: 7, content: `${chalk.bgHex(firstColor).whiteBright.bold(firstTeam)} ${EmojiUtil.FLAG(firstPlayer.nationality)}  ${EmojiUtil.ROLE(firstPlayer.attributes.role)}  ${chalk.hex("#67fca8")(firstPlayer.givenName)} '${chalk.hex("#67fca8").bold(firstPlayer.name)}' ${chalk.hex("#67fca8")(firstPlayer.familyName)} vs ${
+            chalk.whiteBright(secondPlayer.givenName)} '${chalk.whiteBright.bold(secondPlayer.name)}' ${chalk.whiteBright(secondPlayer.familyName)} ${EmojiUtil.ROLE(secondPlayer.attributes.role)}  ${EmojiUtil.FLAG(secondPlayer.nationality)}  ${chalk.bgHex(secondColor).whiteBright.bold(secondTeam)} `, hAlign: 'center' }])
 
+        // create stat headers
+        table.push([align.center(chalk.hex('#fff').bold('Time Played'), 15),
+                    align.center(chalk.hex('#fff').bold('Eliminations'), 20),
+                    align.center(chalk.hex('#fff').bold('Deaths'), 20),
+                    align.center(chalk.hex('#fff').bold('Hero Damage'), 20),
+                    align.center(chalk.hex('#fff').bold('Healing'), 20),
+                    align.center(chalk.hex('#fff').bold('Ultimates Earned'), 20),
+                    align.center(chalk.hex('#fff').bold('Final Blows'), 20)]);
+        table.push([`${align.center(chalk.hex("#67fca8")(firstTimePlayed), 15)}\n${align.center(chalk.whiteBright(secondTimePlayed), 15)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstElims), 20)}\n${align.center(chalk.whiteBright(secondElims), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstDeaths), 20)}\n${align.center(chalk.whiteBright(secondDeaths), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstDamage), 20)}\n${align.center(chalk.whiteBright(secondDamage), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstHealing), 20)}\n${align.center(chalk.whiteBright(secondHealing), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstUltimates), 20)}\n${align.center(chalk.whiteBright(secondUltimates), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstBlows), 20)}\n${align.center(chalk.whiteBright(secondBlows), 20)}`])
         
         spinner.stop();
-        console.log(table.toString());
-        console.log(`First: ${firstElims}\nSecond: ${secondElims}`);
+        table.length ? console.log(`${chalk.gray(table.toString())}\nStats are per 10 minutes, except for Time Played.\n`) : console.log("\n  Could not find team.\n");
     }
 }
