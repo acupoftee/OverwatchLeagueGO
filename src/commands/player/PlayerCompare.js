@@ -16,7 +16,7 @@ const toTimeString = (number) => {
 }
 
 module.exports = {
-    async player(name) {
+    async player(firstName, secondName) {
         const spinner = ora(
             `Loading Player...`
         ).start();
@@ -30,14 +30,15 @@ module.exports = {
             style: { "padding-left": 0, "padding-right": 0, head: [], border: [] }
         });
 
-        const playerId = await OwlUtil.locatePlayer(name);
-        if (playerId === 0) {
+        const firstPlayerId = await OwlUtil.locatePlayer(firstName);
+        const secondPlayerId = await OwlUtil.locatePlayer(secondName);
+        if (firstPlayerId === 0 || secondPlayerId === 0) {
             spinner.stop();
-            Logger.error("Could not locate player. Did you make a typo?");
+            Logger.error(`Could not locate players. Did you make a typo?`);
             return;
         }
 
-        fetch(`https://api.overwatchleague.com/players/${playerId}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers`)
+        fetch(`https://api.overwatchleague.com/players/${firstPlayerId}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers`)
             .then(res => res.json())
             .then(body => {
                 const player = body.data.player;
