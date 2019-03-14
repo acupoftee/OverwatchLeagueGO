@@ -72,16 +72,9 @@ module.exports = {
 
         // create first header : player1 vs player2
         table.push([{ colSpan: 7, content: `${chalk.bgHex(firstColor).whiteBright.bold(firstTeam)} ${EmojiUtil.FLAG(firstPlayer.nationality)}  ${EmojiUtil.ROLE(firstPlayer.attributes.role)}  ${chalk.hex("#67fca8")(firstPlayer.givenName)} '${chalk.hex("#67fca8").bold(firstPlayer.name)}' ${chalk.hex("#67fca8")(firstPlayer.familyName)} vs ${
-            chalk.hex("#f99e1a")(secondPlayer.givenName)} '${chalk.hex("#f99e1a").bold(secondPlayer.name)}' ${chalk.hex("#f99e1a")(secondPlayer.familyName)} ${EmojiUtil.ROLE(secondPlayer.attributes.role)}  ${EmojiUtil.FLAG(secondPlayer.nationality)}  ${chalk.bgHex(secondColor).whiteBright.bold(secondTeam)} `, hAlign: 'center' }])
+            chalk.hex("#fc7d67")(secondPlayer.givenName)} '${chalk.hex("#fc7d67").bold(secondPlayer.name)}' ${chalk.hex("#fc7d67")(secondPlayer.familyName)} ${EmojiUtil.ROLE(secondPlayer.attributes.role)}  ${EmojiUtil.FLAG(secondPlayer.nationality)}  ${chalk.bgHex(secondColor).whiteBright.bold(secondTeam)} `, hAlign: 'center' }])
 
         // create stat headers
-          table.push([`${align.center(chalk.hex("#67fca8")(firstTimePlayed), 15)}`,
-                    `${align.center(chalk.hex("#67fca8")(firstElims), 20)}`,
-                    `${align.center(chalk.hex("#67fca8")(firstDeaths), 20)}`,
-                    `${align.center(chalk.hex("#67fca8")(firstDamage), 20)}`,
-                    `${align.center(chalk.hex("#67fca8")(firstHealing), 20)}`,
-                    `${align.center(chalk.hex("#67fca8")(firstUltimates), 20)}`,
-                    `${align.center(chalk.hex("#67fca8")(firstBlows), 20)}`])
         table.push([align.center(chalk.hex('#fff').bold('Time Played'), 15),
                     align.center(chalk.hex('#fff').bold('Eliminations'), 20),
                     align.center(chalk.hex('#fff').bold('Deaths'), 20),
@@ -89,21 +82,17 @@ module.exports = {
                     align.center(chalk.hex('#fff').bold('Healing'), 20),
                     align.center(chalk.hex('#fff').bold('Ultimates Earned'), 20),
                     align.center(chalk.hex('#fff').bold('Final Blows'), 20)]);
-        // table.push([`${align.center(chalk.hex("#67fca8")(firstTimePlayed), 15)}\n${align.center(chalk.whiteBright(secondTimePlayed), 15)}`,
-        //             `${align.center(chalk.hex("#67fca8")(firstElims), 20)}\n${align.center(chalk.whiteBright(secondElims), 20)}`,
-        //             `${align.center(chalk.hex("#67fca8")(firstDeaths), 20)}\n${align.center(chalk.whiteBright(secondDeaths), 20)}`,
-        //             `${align.center(chalk.hex("#67fca8")(firstDamage), 20)}\n${align.center(chalk.whiteBright(secondDamage), 20)}`,
-        //             `${align.center(chalk.hex("#67fca8")(firstHealing), 20)}\n${align.center(chalk.whiteBright(secondHealing), 20)}`,
-        //             `${align.center(chalk.hex("#67fca8")(firstUltimates), 20)}\n${align.center(chalk.whiteBright(secondUltimates), 20)}`,
-        //             `${align.center(chalk.hex("#67fca8")(firstBlows), 20)}\n${align.center(chalk.whiteBright(secondBlows), 20)}`])
-        table.push([`${align.center(chalk.hex("#f99e1a")(secondTimePlayed), 15)}`,
-        `${align.center(chalk.hex("#f99e1a")(secondElims), 20)}`,
-        `${align.center(chalk.hex("#f99e1a")(secondDeaths), 20)}`,
-        `${align.center(chalk.hex("#f99e1a")(secondDamage), 20)}`,
-        `${align.center(chalk.hex("#f99e1a")(secondHealing), 20)}`,
-        `${align.center(chalk.hex("#f99e1a")(secondUltimates), 20)}`,
-        `${align.center(chalk.hex("#f99e1a")(secondBlows), 20)}`])
-        
+
+        // stats for both players
+        // player 1 is green, player 2 is red
+        table.push([`${align.center(chalk.hex("#67fca8")(firstTimePlayed), 15)}\n${align.center(chalk.hex("#fc7d67")(secondTimePlayed), 15)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstElims), 20)}\n${align.center(chalk.hex("#fc7d67")(secondElims), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstDeaths), 20)}\n${align.center(chalk.hex("#fc7d67")(secondDeaths), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstDamage), 20)}\n${align.center(chalk.hex("#fc7d67")(secondDamage), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstHealing), 20)}\n${align.center(chalk.hex("#fc7d67")(secondHealing), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstUltimates), 20)}\n${align.center(chalk.hex("#fc7d67")(secondUltimates), 20)}`,
+                    `${align.center(chalk.hex("#67fca8")(firstBlows), 20)}\n${align.center(chalk.hex("#fc7d67")(secondBlows), 20)}`])
+
         spinner.stop();
         cfonts.say(`${firstPlayer.name} vs ${secondPlayer.name}`, {
             font: 'block',              
