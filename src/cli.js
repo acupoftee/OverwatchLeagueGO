@@ -62,7 +62,8 @@ program.command("player <name>")
     .on("--help", () => {
         console.log("\n Displays information about a specific Overwatch League player!\n");
         console.log("Example:\n");
-        console.log(`     ${chalk`{hex('#ffde68') owl-go striker}     Lists Striker's stats for the current season`}`);
+        console.log(`     ${chalk`{hex('#ffde68') owl-go player striker}     Lists Striker's stats for the current season`}`);
+        console.log(`     ${chalk`{hex('#ffde68') owl-go player -c striker,surefour}     Lists Striker's and Surefour's stats side by side for the current season`}`);
     })
     .action((name, option) => {
         //console.log(program.list);
