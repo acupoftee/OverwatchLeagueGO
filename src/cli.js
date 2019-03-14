@@ -47,13 +47,15 @@ program.command("teams")
     });
 program.command("team <name>")
     .alias("t")
+    .option("-s, --schedule", "Displays a team's upcoming match schedule.")
+    .option("-m, --matches", "Displays a team's match history.")
     .on("--help", () => {
         console.log("\n Displays information about a specific Overwatch League team!\n");
         console.log("Example:\n");
         console.log(`     ${chalk`{hex('#ffde68') owl-go team bostonuprising}     Lists Boston Uprising's info including standing and roster`}`);
     })
-    .action((name) => {
-        TeamCommand.team(name);
+    .action((name, options) => {
+        TeamCommand.team(name, options);
     });
 program.command("player <name>")
     .alias("p")
