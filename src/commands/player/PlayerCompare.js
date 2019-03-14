@@ -92,6 +92,16 @@ module.exports = {
                     `${align.center(chalk.hex("#67fca8")(firstBlows), 20)}\n${align.center(chalk.whiteBright(secondBlows), 20)}`])
         
         spinner.stop();
+        cfonts.say(`${firstPlayer.name} vs ${secondPlayer.name}`, {
+            font: 'block',              
+            align: 'left',              
+            colors: ['#f80', '#840'],      
+            background: 'transparent',  
+            letterSpacing: 1,          
+            lineHeight: 1,              
+            space: true,                
+            maxLength: '0',             
+        });
         table.length ? console.log(`${chalk.gray(table.toString())}\nStats are per 10 minutes, except for Time Played.\n`) : console.log("\n  Could not find player info to compare.\n");
     }
 }
