@@ -67,7 +67,7 @@ const locatePlayer = async (val) => {
     return id;
 }
 
-/* Capitalizes the first letter in a message
+/** Capitalizes the first letter in a message
 * @param {string} message 
 * @returns {string} a string with a capitalized letter
 */

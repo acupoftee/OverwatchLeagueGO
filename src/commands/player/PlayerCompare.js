@@ -16,9 +16,9 @@ const toTimeString = (number) => {
 }
 
 module.exports = {
-    async playerCompare(firstName, secondName) {
+    async playerCompare(names) {
         const spinner = ora(
-            `Loading Player...`
+            `Loading Players...`
         ).start();
         let table = new Table({
             chars: {
@@ -29,9 +29,14 @@ module.exports = {
             },
             style: { "padding-left": 0, "padding-right": 0, head: [], border: [] }
         });
-
-        const firstPlayerId = await OwlUtil.locatePlayer(firstName);
-        const secondPlayerId = await OwlUtil.locatePlayer(secondName);
+ 
+        if (names[0] === undefined || names[1] === undefined || names.length > 2) {
+            spinner.stop();
+            Logger.error(`Please include two players. Separate names with a comma.`);
+            return;
+        }
+        const firstPlayerId = await OwlUtil.locatePlayer(names[0]);
+        const secondPlayerId = await OwlUtil.locatePlayer(names[1]);
         if (firstPlayerId === 0 || secondPlayerId === 0) {
             spinner.stop();
             Logger.error(`Could not locate players. Did you make a typo?`);
@@ -87,6 +92,6 @@ module.exports = {
                     `${align.center(chalk.hex("#67fca8")(firstBlows), 20)}\n${align.center(chalk.whiteBright(secondBlows), 20)}`])
         
         spinner.stop();
-        table.length ? console.log(`${chalk.gray(table.toString())}\nStats are per 10 minutes, except for Time Played.\n`) : console.log("\n  Could not find team.\n");
+        table.length ? console.log(`${chalk.gray(table.toString())}\nStats are per 10 minutes, except for Time Played.\n`) : console.log("\n  Could not find player info to compare.\n");
     }
 }

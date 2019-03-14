@@ -57,13 +57,16 @@ program.command("team <name>")
     });
 program.command("player <name>")
     .alias("p")
+    .option("-i, --info", "Checks the player's basic info")
+    .option("-c, --compare", "Compares the stats between two players. Seperate the names with commas (no space in bwtween), ex: 'fusions,geguri'")
     .on("--help", () => {
         console.log("\n Displays information about a specific Overwatch League player!\n");
         console.log("Example:\n");
         console.log(`     ${chalk`{hex('#ffde68') owl-go striker}     Lists Striker's stats for the current season`}`);
     })
-    .action((name) => {
-        PlayerCommand.player(name);
+    .action((name, option) => {
+        //console.log(program.list);
+        PlayerCommand.player(name, option);
     });
 
 program.on('--help', () => {
