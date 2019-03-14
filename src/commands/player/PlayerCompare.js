@@ -64,8 +64,11 @@ module.exports = {
         secondUltimates = body.data.stats.all.ultimates_earned_avg_per_10m.toFixed(2);
         secondBlows = body.data.stats.all.final_blows_avg_per_10m.toFixed(2);
 
-        table.push([{ content: `${chalk.bgHex(firstColor).whiteBright.bold(firstTeam)} ${chalk.white('#'+firstPlayer.attributes.player_number)} ${firstPlayer.givenName} '${chalk.whiteBright.bold(firstPlayer.name)}' ${firstPlayer.familyName} vs. ${
-            chalk.bgHex(secondColor).whiteBright.bold(secondTeam)} ${chalk.white('#'+secondPlayer.attributes.player_number)} ${secondPlayer.givenName} '${chalk.whiteBright.bold(secondPlayer.name)}' ${secondPlayer.familyName}`, hAlign: 'center' }])
+        // create first header : player1 vs player2
+        table.push([{ content: `${chalk.bgHex(firstColor).whiteBright.bold(firstTeam)} ${EmojiUtil.ROLE(firstPlayer.attributes.role)}  ${firstPlayer.givenName} '${chalk.whiteBright.bold(firstPlayer.name)}' ${firstPlayer.familyName} vs. ${
+            secondPlayer.givenName} '${chalk.whiteBright.bold(secondPlayer.name)}' ${secondPlayer.familyName} ${EmojiUtil.ROLE(secondPlayer.attributes.role)}  ${chalk.bgHex(secondColor).whiteBright.bold(secondTeam)} `, hAlign: 'center' }])
+
+        
         spinner.stop();
         console.log(table.toString());
         console.log(`First: ${firstElims}\nSecond: ${secondElims}`);
