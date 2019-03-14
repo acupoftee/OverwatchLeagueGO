@@ -43,6 +43,9 @@ module.exports = {
             }
             let teamColor = owl_colors.getPrimaryColor(team.abbreviatedName);
             let teamFont = OwlUtil.colorIsLight(teamColor.rgb[0], teamColor.rgb[1], teamColor.rgb[2]) ? '#000' : '#fff';
+            if (i == 8) {
+                table.push([{colSpan: 1, content: "Stage Playoffs Cutoff", hAlign: 'center'}]);
+            }
             table.push({
                 [align.center(chalk.whiteBright.bold(standing), 8)
                     + align.left(chalk.bgHex(teamColor.hex).hex(teamFont).bold(" " + team.name + " "), 26)]:
