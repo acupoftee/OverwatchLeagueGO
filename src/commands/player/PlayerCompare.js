@@ -48,7 +48,7 @@ module.exports = {
         let body = await JsonUtil.parse(`https://api.overwatchleague.com/players/${firstPlayerId}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers`);
         const firstPlayer = body.data.player;
         const firstTeam = firstPlayer.teams[0].team.abbreviatedName;
-        firstColor = owl_colors.getPrimaryColor(firstTeam).hex;
+        firstColor = owl_colors.getPrimaryColor(firstTeam);
         firstElims = body.data.stats.all.eliminations_avg_per_10m.toFixed(2);
         firstDeaths = body.data.stats.all.deaths_avg_per_10m.toFixed(2);
         firstDamage = body.data.stats.all.hero_damage_avg_per_10m.toFixed(2);
@@ -61,7 +61,7 @@ module.exports = {
         body = await JsonUtil.parse(`https://api.overwatchleague.com/players/${secondPlayerId}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers`);
         const secondPlayer = body.data.player;
         const secondTeam = secondPlayer.teams[0].team.abbreviatedName;
-        secondColor = owl_colors.getPrimaryColor(secondTeam).hex;
+        secondColor = owl_colors.getPrimaryColor(secondTeam);
         secondElims = body.data.stats.all.eliminations_avg_per_10m.toFixed(2);
         secondDeaths = body.data.stats.all.deaths_avg_per_10m.toFixed(2);
         secondDamage = body.data.stats.all.hero_damage_avg_per_10m.toFixed(2);
@@ -70,9 +70,11 @@ module.exports = {
         secondBlows = body.data.stats.all.final_blows_avg_per_10m.toFixed(2);
         secondTimePlayed = toTimeString(body.data.stats.all.time_played_total);
 
+        let firstFont = OwlUtil.colorIsLight(firstColor.rgb[0], firstColor.rgb[1], firstColor.rgb[2]) ? '#000' : '#fff';
+        let secondFont = OwlUtil.colorIsLight(secondColor.rgb[0], secondColor.rgb[1], secondColor.rgb[2]) ? '#000' : '#fff';
         // create first header : player1 vs player2
-        table.push([{ colSpan: 7, content: `${chalk.bgHex(firstColor).whiteBright.bold(firstTeam)} ${EmojiUtil.FLAG(firstPlayer.nationality)}  ${EmojiUtil.ROLE(firstPlayer.attributes.role)}  ${chalk.hex("#67fca8")(firstPlayer.givenName)} '${chalk.hex("#67fca8").bold(firstPlayer.name)}' ${chalk.hex("#67fca8")(firstPlayer.familyName)} vs ${
-            chalk.hex("#fc7d67")(secondPlayer.givenName)} '${chalk.hex("#fc7d67").bold(secondPlayer.name)}' ${chalk.hex("#fc7d67")(secondPlayer.familyName)} ${EmojiUtil.ROLE(secondPlayer.attributes.role)}  ${EmojiUtil.FLAG(secondPlayer.nationality)}  ${chalk.bgHex(secondColor).whiteBright.bold(secondTeam)} `, hAlign: 'center' }])
+        table.push([{ colSpan: 7, content: `${chalk.bgHex(firstColor.hex).hex(firstFont).bold(firstTeam)} ${EmojiUtil.FLAG(firstPlayer.nationality)}  ${EmojiUtil.ROLE(firstPlayer.attributes.role)}  ${chalk.hex("#67fca8")(firstPlayer.givenName)} '${chalk.hex("#67fca8").bold(firstPlayer.name)}' ${chalk.hex("#67fca8")(firstPlayer.familyName)} vs ${
+            chalk.hex("#fc7d67")(secondPlayer.givenName)} '${chalk.hex("#fc7d67").bold(secondPlayer.name)}' ${chalk.hex("#fc7d67")(secondPlayer.familyName)} ${EmojiUtil.ROLE(secondPlayer.attributes.role)}  ${EmojiUtil.FLAG(secondPlayer.nationality)}  ${chalk.bgHex(secondColor.hex).hex(secondFont).bold(secondTeam)} `, hAlign: 'center' }])
 
         // create stat headers
         table.push([align.center(chalk.hex('#fff').bold('Time Played'), 15),

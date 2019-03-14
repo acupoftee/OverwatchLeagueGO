@@ -33,7 +33,7 @@ module.exports = {
         body.data.forEach(competitor => {
             let team = competitor.name;
             let division = OwlUtil.getDivision(competitor.divisionId, true);
-            let { hex: teamColor } = owl_colors.getPrimaryColor(competitor.abbreviatedName);
+            let teamColor  = owl_colors.getPrimaryColor(competitor.abbreviatedName);
             // if (division.toLowerCase() === "atlantic" || division.toLowerCase() === "a") {
             //     let div;
             //     divisions.forEach(div => {
@@ -50,8 +50,9 @@ module.exports = {
             //         }
             //     });
             // }
+            let fontColor = OwlUtil.colorIsLight(teamColor.rgb[0], teamColor.rgb[1], teamColor.rgb[2]) ? '#000' : '#fff';
             table.push({
-                [align.left(chalk.bgHex(teamColor).whiteBright.bold(" " + team + " "), 26)]:
+                [align.left(chalk.bgHex(teamColor.hex).hex(fontColor).bold(" " + team + " "), 26)]:
                     [
                         align.center(chalk.whiteBright.bold(division), 15)
                     ]

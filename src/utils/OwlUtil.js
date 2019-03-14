@@ -74,9 +74,24 @@ const locatePlayer = async (val) => {
 const capitalize = (message) => {
    return message.charAt(0).toUpperCase() + message.slice(1);
 }
+
+/**
+ * Determines the contrast of a color. See https://www.w3.org/TR/AERT/#color-contrast
+ * @param {number} r red value
+ * @param {number} g green value 
+ * @param {number} b blue value
+ * @returns {boolean} true if the luminance is below 0.5 (lighter)
+ */
+const colorIsLight = function (r, g, b) {
+    // Counting the perceptive luminance
+    // human eye favors green color... 
+    let a = 1 - (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return (a < 0.5);
+}
 module.exports = {
     getDivision,
     locateTeam,
     locatePlayer,
-    capitalize
+    capitalize,
+    colorIsLight
 }

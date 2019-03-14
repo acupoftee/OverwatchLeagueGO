@@ -4,7 +4,7 @@ const chalk = require("chalk");
 const owl_colors = require('owl-colors');
 const cfonts = require('cfonts');
 const ora = require('ora');
-const { JsonUtil } = require('../../utils');
+const { JsonUtil, OwlUtil } = require('../../utils');
 
 const createTable = headers => {
     return new Table({
@@ -41,10 +41,11 @@ module.exports = {
             if (mapDiff >= 0) {
                 mapDiff = '+' + mapDiff;
             }
-            let { hex: teamColor } = owl_colors.getPrimaryColor(team.abbreviatedName);
+            let teamColor = owl_colors.getPrimaryColor(team.abbreviatedName);
+            let teamFont = OwlUtil.colorIsLight(teamColor.rgb[0], teamColor.rgb[1], teamColor.rgb[2]) ? '#000' : '#fff';
             table.push({
                 [align.center(chalk.whiteBright.bold(standing), 8)
-                    + align.left(chalk.bgHex(teamColor).whiteBright.bold(" " + team.name + " "), 26)]:
+                    + align.left(chalk.bgHex(teamColor.hex).hex(teamFont).bold(" " + team.name + " "), 26)]:
                     [
                         align.center(chalk.hex("#67fca8").bold(records.matchWin), 9),
                         align.center(chalk.hex("#fc7d67").bold(records.matchLoss), 9),

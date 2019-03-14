@@ -5,7 +5,7 @@ const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const stageData = require('../../data/stages.json');
-const { JsonUtil } = require('../../utils');
+const { JsonUtil, OwlUtil } = require('../../utils');
 
 const options = { weekday: "short", hour: "2-digit", minute: "2-digit" };
 
@@ -31,7 +31,7 @@ const createTable = headers => {
 module.exports = {
     async matches() {
         const spinner = ora(
-            'Loading Matches...'
+            'Loading this week\'s schedule...'
         ).start();
 
         const body = await JsonUtil.parse("https://api.overwatchleague.com/schedule?locale=en_US");
@@ -60,13 +60,16 @@ module.exports = {
                         _week.matches.forEach(_match => {
                             let home = _match.competitors[0];
                             let away = _match.competitors[1];
-                            let { hex: homeColor } = owl_colors.getPrimaryColor(home.abbreviatedName);
-                            let { hex: awayColor } = owl_colors.getPrimaryColor(away.abbreviatedName);
+                            let homeColor  = owl_colors.getPrimaryColor(home.abbreviatedName);
+                            let awayColor = owl_colors.getPrimaryColor(away.abbreviatedName);
+
+                            let homeFont = OwlUtil.colorIsLight(homeColor.rgb[0], homeColor.rgb[1], homeColor.rgb[2]) ? '#000' : '#fff';
+                            let awayFont = OwlUtil.colorIsLight(awayColor.rgb[0], awayColor.rgb[1], awayColor.rgb[2]) ? '#000' : '#fff';
 
                             table.push({
                                 [getMatch(
-                                    chalk.bgHex(homeColor).whiteBright.bold(" " + home.name + " "),
-                                    chalk.bgHex(awayColor).whiteBright.bold(" " + away.name + " "),
+                                    chalk.bgHex(homeColor.hex).hex(homeFont).bold(" " + home.name + " "),
+                                    chalk.bgHex(awayColor.hex).hex(awayFont).bold(" " + away.name + " "),
                                     _match.scores[0].value,
                                     _match.scores[1].value,
                                     _match.scores[0].value > _match.scores[1].value ? 1 : 0

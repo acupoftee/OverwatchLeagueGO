@@ -68,17 +68,20 @@ module.exports = {
                         if (_match.competitors[0].id === teamId || _match.competitors[1].id === teamId) {
                             let home = _match.competitors[0];
                             let away = _match.competitors[1];
-                            let { hex: homeColor } = owl_colors.getPrimaryColor(home.abbreviatedName);
-                            let { hex: awayColor } = owl_colors.getPrimaryColor(away.abbreviatedName);
+                            let homeColor = owl_colors.getPrimaryColor(home.abbreviatedName);
+                            let awayColor = owl_colors.getPrimaryColor(away.abbreviatedName);
 
                             teamName = _match.competitors[0].id === teamId ? home.name : away.name;
                             teamAbbr =  _match.competitors[0].id === teamId ? home.abbreviatedName : away.abbreviatedName;
                             primaryColor = _match.competitors[0].id === teamId ? owl_colors.getPrimaryColor(home.abbreviatedName).hex : owl_colors.getPrimaryColor(away.abbreviatedName).hex;
                             secondaryColor = _match.competitors[0].id === teamId ? owl_colors.getSecondaryColor(home.abbreviatedName).hex : owl_colors.getSecondaryColor(away.abbreviatedName).hex;
+
+                            let homeFont = OwlUtil.colorIsLight(homeColor.rgb[0], homeColor.rgb[1], homeColor.rgb[2]) ? '#000' : '#fff';
+                            let awayFont = OwlUtil.colorIsLight(awayColor.rgb[0], awayColor.rgb[1], awayColor.rgb[2]) ? '#000' : '#fff';
                             table.push({
                                 [getMatch(
-                                    chalk.bgHex(homeColor).whiteBright.bold(" " + home.name + " "),
-                                    chalk.bgHex(awayColor).whiteBright.bold(" " + away.name + " "),
+                                    chalk.bgHex(homeColor.hex).hex(homeFont).bold(" " + home.name + " "),
+                                    chalk.bgHex(awayColor.hex).hex(awayFont).bold(" " + away.name + " "),
                                     _match.scores[0].value,
                                     _match.scores[1].value,
                                     _match.scores[0].value > _match.scores[1].value ? 1 : 0

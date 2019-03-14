@@ -41,9 +41,10 @@ module.exports = {
         }
         let body = await JsonUtil.parse(`https://api.overwatchleague.com/v2/teams/${teamId}?locale=en_US`);
         const team = body.data;
-        const { hex: teamColor } = owl_colors.getPrimaryColor(team.abbreviatedName);
+        const teamColor = owl_colors.getPrimaryColor(team.abbreviatedName);
         const { hex: secondColor } = owl_colors.getSecondaryColor(team.abbreviatedName);
-        table.push([chalk.bgHex(teamColor).whiteBright.bold(team.name) + ` ${chalk.whiteBright("(" + team.abbreviatedName + ")")} \n` +
+         let teamFont = OwlUtil.colorIsLight(teamColor.rgb[0], teamColor.rgb[1], teamColor.rgb[2]) ? '#000' : '#fff';
+        table.push([chalk.bgHex(teamColor.hex).hex(teamFont).bold(team.name) + ` ${chalk.whiteBright("(" + team.abbreviatedName + ")")} \n` +
             chalk.whiteBright(team.location + " - " + OwlUtil.getDivision(team.divisionId) + " Division" + " ") + "\n" +
             chalk.whiteBright(ordinal(team.placement) + " in the Overwatch League") + "\n" +
             chalk.whiteBright(`Record: ${team.records.matchWin}W - ${team.records.matchLoss}L`)],
@@ -76,7 +77,7 @@ module.exports = {
         cfonts.say(newName, {
             font: 'block',
             align: 'left',
-            colors: [teamColor, secondColor],
+            colors: [teamColor.hex, secondColor],
             background: 'transparent',
             letterSpacing: 1,
             lineHeight: 1,

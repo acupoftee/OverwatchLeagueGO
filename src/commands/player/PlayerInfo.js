@@ -39,11 +39,11 @@ module.exports = {
         const body = await JsonUtil.parse(`https://api.overwatchleague.com/players/${playerId}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers`);
         const player = body.data.player;
         const team = player.teams[0].team.abbreviatedName;
-        const { hex: teamColor } = owl_colors.getPrimaryColor(team);
+        const teamColor = owl_colors.getPrimaryColor(team);
         const { hex: secondColor } = owl_colors.getSecondaryColor(team);
 
-
-        table.push([{ colSpan: 7, content: `${chalk.bgHex(teamColor).whiteBright.bold(team)} ${chalk.white('#' + player.attributes.player_number)} ${player.givenName} '${chalk.whiteBright.bold(player.name)}' ${player.familyName} `, hAlign: 'center' }])
+        let teamFont = OwlUtil.colorIsLight(teamColor.rgb[0], teamColor.rgb[1], teamColor.rgb[2]) ? '#000' : '#fff';
+        table.push([{ colSpan: 7, content: `${chalk.bgHex(teamColor.hex).hex(teamFont).bold(team)} ${chalk.white('#' + player.attributes.player_number)} ${player.givenName} '${chalk.whiteBright.bold(player.name)}' ${player.familyName} `, hAlign: 'center' }])
         table.push([{ colSpan: 7, content: `${EmojiUtil.FLAG(player.nationality)}  ${EmojiUtil.ROLE(player.attributes.role)}  ${player.homeLocation}, ${OwlUtil.capitalize(player.attributes.role)} Player`, hAlign: 'center' }]);
         table.push([align.center(chalk.hex('#fff').bold('Time Played'), 15),
         align.center(chalk.hex('#fff').bold('Eliminations'), 20),
@@ -65,7 +65,7 @@ module.exports = {
         cfonts.say(player.name, {
             font: 'block',
             align: 'left',
-            colors: [teamColor, secondColor],
+            colors: [teamColor.hex, secondColor],
             background: 'transparent',
             letterSpacing: 1,
             lineHeight: 1,
