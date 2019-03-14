@@ -5,9 +5,9 @@ const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const stageData = require('../../data/stages.json');
-const { JsonUtil, OwlUtil} = require('../../utils');
+const { JsonUtil, OwlUtil, Logger } = require('../../utils');
 
-const options = { month: "short", weekday: "short", day: "numeric", hour: "2-digit", minute: "2-digit" };
+const options = { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" };
 
 const getMatch = (team_1, team_2, result_1, result_2, result) =>
     `${align.right(`${result ? chalk.hex("#f99e1a")('♔') : " "} ${
@@ -56,7 +56,7 @@ module.exports = {
         table = createTable([
             align.center(chalk.hex('#fff').bold("Matches"), 68),
             align.center(chalk.hex('#fff').bold("Status"), 18),
-            align.center(chalk.hex('#fff').bold("Date"), 22)
+            align.center(chalk.hex('#fff').bold("Date"), 30)
         ]);
 
         body.data.stages.forEach(_stage => {
@@ -85,7 +85,7 @@ module.exports = {
                                     _match.scores[0].value > _match.scores[1].value ? 1 : 0
                                 )]: [
                                         align.center(chalk.hex("#fff")(_match.status), 18),
-                                        align.center(chalk.hex("#fff")(new Date(_match.startDate).toLocaleString("en-US", options)), 22)
+                                        align.center(chalk.hex("#fff")(new Date(_match.startDate).toLocaleString("en-US", options)), 30)
                                     ]
                             });
                         }
