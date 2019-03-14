@@ -6,7 +6,8 @@ const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const stageData = require('../../data/stages.json');
-const emojis = require('node-emoji');
+const { JsonUtil } = require('../../utils');
+
 
 const options = { weekday: "short", hour: "2-digit", minute: "2-digit" };
 
@@ -28,13 +29,12 @@ const createTable = headers => {
 };
 
 module.exports = {
-    matches() {
+    async matches() {
         const spinner = ora(
             'Loading Matches...'
           ).start();
-        fetch("https://api.overwatchleague.com/schedule?locale=en_US")
-            .then(res => res.json())
-            .then(body => {
+
+                const body = await JsonUtil.parse("https://api.overwatchleague.com/schedule?locale=en_US");
                 let currentTime = new Date().getTime();
                 let slug = null;
                 let table = null;
@@ -92,7 +92,7 @@ module.exports = {
                         table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log("\n  There are no Overwatch League matches this week.\n");
                     }
                 })
-            });
+
     }
 }
 
