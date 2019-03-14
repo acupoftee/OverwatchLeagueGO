@@ -1,12 +1,10 @@
 const Table = require("cli-table3");
-const fetch = require("node-fetch");
 const align = require("wide-align");
 const chalk = require("chalk");
 const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const { OwlUtil, Logger, EmojiUtil, JsonUtil } = require('../../utils');
-const PlayerCompare = require('./PlayerCompare');
 
 const toTimeString = (number) => {
     let h = Math.floor(number / 3600);
