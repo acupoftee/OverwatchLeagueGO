@@ -6,6 +6,7 @@ const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const { OwlUtil, Logger, EmojiUtil } = require('../../utils');
+const PlayerCompare = require('./PlayerCompare');
 
 const toTimeString = (number) => {
     let h = Math.floor(number / 3600);
@@ -77,5 +78,6 @@ module.exports = {
                 });
                 table.length ? console.log(`${chalk.gray(table.toString())}\nStats are per 10 minutes, except for Time Played.\n`) : console.log("\n  Could not find team.\n");
             })
+            await PlayerCompare.playerCompare("striker", "geguri");
     }
 }

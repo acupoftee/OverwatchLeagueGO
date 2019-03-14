@@ -5,7 +5,7 @@ const chalk = require("chalk");
 const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
-const { OwlUtil, Logger, EmojiUtil } = require('../../utils');
+const { OwlUtil, Logger, EmojiUtil, JsonUtil } = require('../../utils');
 
 const toTimeString = (number) => {
     let h = Math.floor(number / 3600);
@@ -16,7 +16,7 @@ const toTimeString = (number) => {
 }
 
 module.exports = {
-    async player(firstName, secondName) {
+    async playerCompare(firstName, secondName) {
         const spinner = ora(
             `Loading Player...`
         ).start();
@@ -37,46 +37,37 @@ module.exports = {
             Logger.error(`Could not locate players. Did you make a typo?`);
             return;
         }
+        let firstColor, firstElims, firstDeaths, firstDamage, firstHealing, firstUltimates, firstBlows, firstTimePlayed;
+        let secondColor, secondElims, secondDeaths, secondDamage, secondHealing, secondUltimates, secondBlows, secondTimePlayed;
 
-        fetch(`https://api.overwatchleague.com/players/${firstPlayerId}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers`)
-            .then(res => res.json())
-            .then(body => {
-                const player = body.data.player;
-                const team = player.teams[0].team.abbreviatedName;
-                const { hex: teamColor } = owl_colors.getPrimaryColor(team);
-                const { hex: secondColor } = owl_colors.getSecondaryColor(team);
+        // fetch data for first player
+        let body = await JsonUtil.parse(`https://api.overwatchleague.com/players/${firstPlayerId}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers`);
+        const firstPlayer = body.data.player;
+        const firstTeam = firstPlayer.teams[0].team.abbreviatedName;
+        firstColor = owl_colors.getPrimaryColor(firstTeam).hex;
+        firstElims = body.data.stats.all.eliminations_avg_per_10m.toFixed(2);
+        firstDeaths = body.data.stats.all.deaths_avg_per_10m.toFixed(2);
+        firstDamage = body.data.stats.all.hero_damage_avg_per_10m.toFixed(2);
+        firstHealing = body.data.stats.all.healing_avg_per_10m.toFixed(2);
+        firstUltimates = body.data.stats.all.ultimates_earned_avg_per_10m.toFixed(2);
+        firstBlows = body.data.stats.all.final_blows_avg_per_10m.toFixed(2);
 
+        // load second player
+        body = await JsonUtil.parse(`https://api.overwatchleague.com/players/${secondPlayerId}?locale=en_US&expand=team,team.matches.recent,stats,stat.ranks,similarPlayers`);
+        const secondPlayer = body.data.player;
+        const secondTeam = secondPlayer.teams[0].team.abbreviatedName;
+        secondColor = owl_colors.getPrimaryColor(secondTeam).hex;
+        secondElims = body.data.stats.all.eliminations_avg_per_10m.toFixed(2);
+        secondDeaths = body.data.stats.all.deaths_avg_per_10m.toFixed(2);
+        secondDamage = body.data.stats.all.hero_damage_avg_per_10m.toFixed(2);
+        secondHealing = body.data.stats.all.healing_avg_per_10m.toFixed(2);
+        secondUltimates = body.data.stats.all.ultimates_earned_avg_per_10m.toFixed(2);
+        secondBlows = body.data.stats.all.final_blows_avg_per_10m.toFixed(2);
 
-                table.push([{ colSpan: 7, content: `${chalk.bgHex(teamColor).whiteBright.bold(team)} ${chalk.white('#'+player.attributes.player_number)} ${player.givenName} '${chalk.whiteBright.bold(player.name)}' ${player.familyName} `, hAlign: 'center' }])
-                table.push([{ colSpan: 7, content: `${EmojiUtil.FLAG(player.nationality)}  ${EmojiUtil.ROLE(player.attributes.role)}  ${player.homeLocation}, ${OwlUtil.capitalize(player.attributes.role)} Player`, hAlign: 'center'}]);
-                table.push([align.center(chalk.hex('#fff').bold('Time Played'), 15),
-                    align.center(chalk.hex('#fff').bold('Eliminations'), 20),
-                    align.center(chalk.hex('#fff').bold('Deaths'), 15),
-                    align.center(chalk.hex('#fff').bold('Hero Damage'), 20),
-                    align.center(chalk.hex('#fff').bold('Healing'), 15),
-                    align.center(chalk.hex('#fff').bold('Ultimates Earned'), 20),
-                    align.center(chalk.hex('#fff').bold('Final Blows'), 15)]);
-
-                table.push([align.center(chalk.hex('#fff').whiteBright(toTimeString(body.data.stats.all.time_played_total)), 15),
-                    align.center(chalk.hex('#fff').whiteBright(body.data.stats.all.eliminations_avg_per_10m.toFixed(2)), 20),
-                    align.center(chalk.hex('#fff').whiteBright(body.data.stats.all.deaths_avg_per_10m.toFixed(2)), 15),
-                    align.center(chalk.hex('#fff').whiteBright(body.data.stats.all.hero_damage_avg_per_10m.toFixed(2)), 20),
-                    align.center(chalk.hex('#fff').whiteBright(body.data.stats.all.healing_avg_per_10m.toFixed(2)), 15),
-                    align.center(chalk.hex('#fff').whiteBright(body.data.stats.all.ultimates_earned_avg_per_10m.toFixed(2)), 20),
-                    align.center(chalk.hex('#fff').whiteBright(body.data.stats.all.final_blows_avg_per_10m.toFixed(2)), 15)]);
-                spinner.stop();
-
-                cfonts.say(player.name, {
-                    font: 'block',              
-                    align: 'left',            
-                    colors: [teamColor, secondColor],         
-                    background: 'transparent',  
-                    letterSpacing: 1,        
-                    lineHeight: 1,             
-                    space: true,                
-                    maxLength: '0',            
-                });
-                table.length ? console.log(`${chalk.gray(table.toString())}\nStats are per 10 minutes, except for Time Played.\n`) : console.log("\n  Could not find team.\n");
-            })
+        table.push([{ content: `${chalk.bgHex(firstColor).whiteBright.bold(firstTeam)} ${chalk.white('#'+firstPlayer.attributes.player_number)} ${firstPlayer.givenName} '${chalk.whiteBright.bold(firstPlayer.name)}' ${firstPlayer.familyName} vs. ${
+            chalk.bgHex(secondColor).whiteBright.bold(secondTeam)} ${chalk.white('#'+secondPlayer.attributes.player_number)} ${secondPlayer.givenName} '${chalk.whiteBright.bold(secondPlayer.name)}' ${secondPlayer.familyName}`, hAlign: 'center' }])
+        spinner.stop();
+        console.log(table.toString());
+        console.log(`First: ${firstElims}\nSecond: ${secondElims}`);
     }
 }
