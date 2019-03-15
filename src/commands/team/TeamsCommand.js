@@ -59,7 +59,7 @@ module.exports = {
             });
         });
         spinner.stop();
-        cfonts.say("Overwatch|League Teams", {
+        cfonts.say("Teams", {
             font: 'block',
             align: 'left',
             colors: ['#f80', '#840'],

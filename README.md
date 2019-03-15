@@ -1,7 +1,6 @@
 <img src="https://acupoftee.github.io/images/owlshort.png">
 
 # Overwatch League GO
-OWL Go
 > Enjoy Overwatch League right from your desktop!
 
 Follow Overwatch League matches, teams, and players right on your console. Best CLI tool for Overwatch League fans and Engineers!
@@ -20,7 +19,18 @@ $ npm install -g owl-go
 4. `team` or `t`
 5. `player` or `p`
    
+### Teams
+```
+$ owl-go teams
+```
+See all the teams competing in the Overwatch League this season!
+
+<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/teams.png" height="700">
+
 ### Schedule
+```
+$ owl-go schedule
+```
 See this weeks Overwatch League schedule here! Follow score updates and match progress from the current week for your favorite teams!
 
 <img src ="https://acupoftee.github.io/images/owlgo/schedule.png">
