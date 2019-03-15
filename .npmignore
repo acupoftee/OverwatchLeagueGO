@@ -1,0 +1,7 @@
+node_modules/
+src/
+lib/
+bin/
+webpack.config.js
+.git
+.DS_Store

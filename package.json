@@ -15,7 +15,7 @@
     "clean": "rimraf lib packed",
     "dev": "webpack --config webpack.config.js -d -w",
     "pack": "pkg . --out-path packed",
-    "prepublishOnly": "npm run build && echo '#!/usr/bin/env node' | cat - lib/cli.js > mv temp lib/cli.js"
+    "prepublishOnly": "npm run build && echo '#!/usr/bin/env node'"
   },
   "repository": {
     "type": "git",
@@ -58,9 +58,21 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
     "copy-webpack-plugin": "^5.0.1",
+    "pkg": "^4.3.7",
     "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-node-externals": "^1.7.2"
+  },
+  "pkg": {
+    "scripts": [
+      "lib/**/*.js"
+    ],
+    "assets": "lib/data/*",
+    "targets": [
+      "node8-macos",
+      "node8-linux",
+      "node8-win"
+    ]
   }
 }

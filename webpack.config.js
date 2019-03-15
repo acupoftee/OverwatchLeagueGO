@@ -36,7 +36,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {
-                from: path.join(__dirname, 'src', 'utils'),
+                from: path.join(__dirname, 'src', 'utils', 'data'),
                 to: path.join(__dirname, 'lib'),
             },
         ]),

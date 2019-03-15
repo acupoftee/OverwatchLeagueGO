@@ -1,5 +1,5 @@
-const divisions = require('../data/divisions.json');
-const teamNames = require('../data/teamnames.json');
+const divisions = require('./data/divisions.json');
+const teamNames = require('./data/teamnames.json');
 const JsonUtil = require('./JsonUtil');
 
 /**
