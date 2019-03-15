@@ -20,17 +20,49 @@ $ npm install -g owl-go
 5. `player` or `p`
    
 ### Teams
+See all the teams competing in the Overwatch League this season!
+
 ```
 $ owl-go teams
 ```
-See all the teams competing in the Overwatch League this season!
 
 <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/teams.png" height="700">
 
+### Team
+Look up your favorite teams and see their league standing, league records, and team roster!
+
+```
+$ owl-go team bostonuprising
+```
+***NOTE***: *Don't add spaces between team names!*
+
+<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/team.png" height="500">
+
+#### Options
+
+##### `-m` or `--matches`
+Look up your teams match history for the season.
+
+```
+$ owl-go team bostonuprising -m
+```
+
+<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/team_matches.png">
+
+##### `-s` or `--schedule`
+Look up your teams schedule for upcoming matches.
+
+```
+$ owl-go team bostonuprising -s
+```
+
+<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/team_schedule.png">
+
 ### Schedule
+See this weeks Overwatch League schedule here! Follow score updates and match progress from the current week for your favorite teams!
+
 ```
 $ owl-go schedule
 ```
-See this weeks Overwatch League schedule here! Follow score updates and match progress from the current week for your favorite teams!
 
 <img src ="https://acupoftee.github.io/images/owlgo/schedule.png">
