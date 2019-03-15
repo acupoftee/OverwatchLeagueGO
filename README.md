@@ -112,3 +112,6 @@ $ owl-go standings
 ```
 
 <img src ="https://acupoftee.github.io/images/owlgo/stand.png" height="500">
+
+## Related Repos:
+- [OverwatchLeagueColors](https://github.com/acupoftee/OverwatchLeagueColors)
