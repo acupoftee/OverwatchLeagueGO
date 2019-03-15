@@ -111,4 +111,4 @@ See this weeks Overwatch League standings here!
 $ owl-go standings
 ```
 
-<img src ="https://acupoftee.github.io/images/owlgo/stand.png">
+<img src ="https://acupoftee.github.io/images/owlgo/stand.png" height="500">
