@@ -89,6 +89,14 @@ $ owl-go player dafran,geguri -c
 ### Schedule
 See this weeks Overwatch League schedule here! Follow score updates and match progress from the current week for your favorite teams!
 
+Depending on the status of the game you chose, a different result will be shown. There are three kinds of statuses that may be displayed.
+
+| Status              | Example                                                                                                                                                                 | Description                                                                                                                                                             |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pending | <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/pending.png">             | Shows **when the game starts**.  |
+| In Progress       |<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/in%20progress.png">            | Shows **live game map status and score**!          |
+| Concluded     | <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/concluded.png">             | Shows the final scoreboard of a match.                                                                                                          |
+
 ```
 $ owl-go schedule
 ```

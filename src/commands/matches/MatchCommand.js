@@ -74,7 +74,7 @@ module.exports = {
                                     _match.scores[1].value,
                                     _match.scores[0].value > _match.scores[1].value ? 1 : 0
                                 )]: [
-                                        align.center(chalk.hex("#fff")(_match.status), 18),
+                                        align.center(chalk.hex("#fff")("IN_PROGRESS"), 18),
                                         align.center(chalk.hex("#fff")(new Date(_match.startDate).toLocaleString("en-US", options)), 18)
                                     ]
                             });
