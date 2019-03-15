@@ -13,11 +13,11 @@ $ npm install -g owl-go
 ```
 ## Usage
 `owl-go` has the following commands:
-1. `schedule` or `s`
-2. `standings` or `st`
-3. `teams` or `ts`
-4. `team` or `t`
-5. `player` or `p`
+1. `teams` or `ts`
+2. `team` or `t`
+3. `player` or `p`
+4. `schedule` or `s`
+5. `standings` or `st`
    
 ### Teams
 See all the teams competing in the Overwatch League this season!

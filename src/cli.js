@@ -80,7 +80,12 @@ program.on('--help', () => {
     );
     console.log('');
     console.log(
-        `  Wanna follow and OWL match progress please enter: ${chalk.green('owl-go matches')}`
+        `  Wanna check OWL team information please enter: ${chalk.green(
+            'owl-go teams'
+        )}`
+    );
+    console.log(
+        `  Wanna follow and OWL match progress please enter: ${chalk.green('owl-go schedule')}`
     );
     console.log(
         `  Wanna check current League standings please enter: ${chalk.green(
@@ -90,6 +95,11 @@ program.on('--help', () => {
     console.log(
         `  Wanna check OWL player information please enter: ${chalk.green(
             'owl-go player <name>'
+        )}`
+    );
+    console.log(
+        `  Wanna check OWL team information please enter: ${chalk.green(
+            'owl-go team <name>'
         )}`
     );
     console.log('');
