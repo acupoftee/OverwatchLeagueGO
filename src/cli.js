@@ -23,7 +23,7 @@ program.command("schedule")
     });
 
 program.command("standings")
-    .alias("s")
+    .alias("st")
     .on("--help", () => {
         console.log("\n See this week's Overwatch League Standings!\n");
         console.log("Example:\n");
