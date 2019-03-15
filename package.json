@@ -13,7 +13,9 @@
   "scripts": {
     "build": "npm run clean && webpack --config webpack.config.js -p",
     "clean": "rimraf lib packed",
-    "dev": "webpack --config"
+    "dev": "webpack --config webpack.config.js -d -w",
+    "pack": "pkg . --out-path packed",
+    "prepublishOnly": "npm run build && echo '#!/usr/bin/env node' | cat - lib/cli.js > mv temp lib/cli.js"
   },
   "repository": {
     "type": "git",
@@ -52,6 +54,8 @@
     "wide-align": "^1.1.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
     "copy-webpack-plugin": "^5.0.1",
     "terser-webpack-plugin": "^1.2.3",
