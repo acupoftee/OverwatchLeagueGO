@@ -75,6 +75,19 @@ const capitalize = (message) => {
    return message.charAt(0).toUpperCase() + message.slice(1);
 }
 
+ /**
+     * Capitalizes the first letter of each word in a sentence
+     * @param {string} sentence 
+     */
+    const capitalizeSentence = (sentence) => {
+        let str = sentence.toLowerCase().split(" ");
+        for (let i = 0; i < str.length; i++) {
+            str[i] = str[i].charAt(0).toUpperCase() + str[i].substring(1);
+        }
+        return str.join(" ");
+    }
+
+
 /**
  * Determines the contrast of a color. See https://www.w3.org/TR/AERT/#color-contrast
  * @param {number} r red value
@@ -93,5 +106,6 @@ module.exports = {
     locateTeam,
     locatePlayer,
     capitalize,
-    colorIsLight
+    colorIsLight,
+    capitalizeSentence
 }

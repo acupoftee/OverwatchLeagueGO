@@ -66,9 +66,11 @@
   },
   "pkg": {
     "scripts": [
-      "lib/**/*.js"
+      "lib/*.js"
     ],
-    "assets": "lib/data/*",
+    "assets": [
+      "lib/data/*"
+    ],
     "targets": [
       "node8-macos",
       "node8-linux",

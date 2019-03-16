@@ -5,7 +5,7 @@ const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const stageData = require('../../utils/data/stages.json');
-const { JsonUtil, OwlUtil } = require('../../utils');
+const { JsonUtil, OwlUtil, MapUtil } = require('../../utils');
 
 const options = { weekday: "short", hour: "2-digit", minute: "2-digit" };
 
@@ -39,10 +39,25 @@ module.exports = {
         let slug = null;
         let table = null;
         let stage = "";
+        let mapStatus = "";
         for (let i = 0; i < stageData.length; i++) {
             const stage = stageData[i];
             if (currentTime > stage.startDate && currentTime < stage.endDate) {
                 slug = stage.slug;
+            }
+        }
+
+        const live = await JsonUtil.parse("https://api.overwatchleague.com/live-match?locale=en_US");
+        if (Object.keys(live.data.liveMatch).length !== 0) {
+            let match = live.data.liveMatch
+            if (live.data.liveMatch.state === 'IN_PROGRSS') {
+                for (let i = 0; i < match.games.length; i++) {
+                    game = match.games[i].number;
+                    currentMap = await MapUtil.getMap(match.games[i].attributes.mapGuid);
+                    currentMapType = await MapUtil.getMapType(match.games[i].attributes.mapGuid);
+                    break;
+                }
+                mapStatus = `Game ${game} of ${match.games.length} - Map: ${currentMap}`;
             }
         }
 
@@ -54,7 +69,7 @@ module.exports = {
                         stage = `${_stage.name} ${_week.name}`;
                         table = createTable([
                             align.center(chalk.hex('#fff').bold(`${stage} Matches`), 68),
-                            align.center(chalk.hex('#fff').bold("Status"), 18),
+                            align.center(chalk.hex('#fff').bold("Status"), 25),
                             align.center(chalk.hex('#fff').bold("Date"), 18)
                         ]);
                         _week.matches.forEach(_match => {
@@ -62,10 +77,15 @@ module.exports = {
                             let away = _match.competitors[1];
                             let homeColor  = owl_colors.getPrimaryColor(home.abbreviatedName);
                             let awayColor = owl_colors.getPrimaryColor(away.abbreviatedName);
+                            let status = _match.status;
+                
 
                             let homeFont = OwlUtil.colorIsLight(homeColor.rgb[0], homeColor.rgb[1], homeColor.rgb[2]) ? '#000' : '#fff';
                             let awayFont = OwlUtil.colorIsLight(awayColor.rgb[0], awayColor.rgb[1], awayColor.rgb[2]) ? '#000' : '#fff';
 
+                            if (status === "IN_PROGRESS") 
+                                status = mapStatus;
+                            
                             table.push({
                                 [getMatch(
                                     chalk.bgHex(homeColor.hex).hex(homeFont).bold(" " + home.name + " "),
@@ -74,7 +94,7 @@ module.exports = {
                                     _match.scores[1].value,
                                     _match.scores[0].value > _match.scores[1].value ? 1 : 0
                                 )]: [
-                                        align.center(chalk.hex("#fff")("IN_PROGRESS"), 18),
+                                        align.center(chalk.hex("#fff")(status), 25),
                                         align.center(chalk.hex("#fff")(new Date(_match.startDate).toLocaleString("en-US", options)), 18)
                                     ]
                             });

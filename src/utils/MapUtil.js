@@ -17,6 +17,23 @@ const JsonUtil = require('./JsonUtil');
     }
 
     /**
+     * Finds the type of map by ID
+     * @param {string} guid the Map GUID
+     */
+    const getMapType = async (guid) => {
+        const body = await JsonUtil.parse(Endpoints.get("MAPS"));
+        return new Promise((resolve, reject) => {
+            body.forEach(element => {
+                if (element.guid == guid) {
+                    resolve(MessageUtil.capitalize(element.type));
+                }
+            });
+            reject(null);
+        });
+    }
+
+
+    /**
      * Finds the map's current state
      * @param {string} guid the map GUID
      */
@@ -34,5 +51,6 @@ const JsonUtil = require('./JsonUtil');
 
 module.exports = {
     getMap,
+    getMapType,
     getLiveMapState
 }
