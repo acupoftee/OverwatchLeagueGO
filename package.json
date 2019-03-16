@@ -68,9 +68,6 @@
     "scripts": [
       "lib/*.js"
     ],
-    "assets": [
-      "lib/data/*"
-    ],
     "targets": [
       "node8-macos",
       "node8-linux",

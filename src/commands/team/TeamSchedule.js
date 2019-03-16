@@ -4,10 +4,11 @@ const chalk = require("chalk");
 const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
-const stageData = require('../../utils/data/stages.json');
+//const stageData = require('../../utils/data/stages.json');
 const { JsonUtil, OwlUtil, MapUtil } = require('../../utils');
 
 const options = { month: "short", weekday: "short", day: "numeric", hour: "2-digit", minute: "2-digit" };
+const stageData = OwlUtil.stageData;
 
 const getMatch = (team_1, team_2, result_1, result_2, result) =>
     `${align.right(`${result ? chalk.hex("#f99e1a")('♔') : " "} ${
