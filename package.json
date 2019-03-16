@@ -15,7 +15,7 @@
     "clean": "rimraf lib packed",
     "dev": "webpack --config webpack.config.js -d -w",
     "pack": "pkg . --out-path packed",
-    "prepublishOnly": "npm run build && echo '#!/usr/bin/env node'"
+    "prepublishOnly": "npm run build && echo '#!/usr/bin/env node' | cat - lib/cli.js > temp && mv temp lib/cli.js"
   },
   "repository": {
     "type": "git",
