@@ -1,6 +1,7 @@
-node_modules/
 src/
+bin/
 lib/
+# packed/
 webpack.config.js
 .git
 .DS_Store

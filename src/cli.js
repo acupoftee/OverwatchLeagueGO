@@ -2,6 +2,8 @@ const program = require('commander');
 const chalk = require('chalk');
 const pkg = require('../package.json');
 const didYouMean = require('didyoumean');
+const isAsyncSupported = require('is-async-supported');
+const updateNotifier = require('update-notifier');
 const {
     MatchCommand,
     StandingsCommand,
@@ -10,6 +12,23 @@ const {
     PlayerCommand
 } = require('./commands');
 const { Logger } = require('./utils')
+
+if (!isAsyncSupported()) {
+    require('async-to-gen/register');
+  }
+  
+  (async () => {
+    await updateNotifier({
+      pkg,
+    }).notify({ defer: false });
+  })();
+  
+  program.version(
+    `\n${chalk`{bold.hex('#f80') OWL}`} 'GO' version: ${
+      pkg.version
+    }\n`,
+    '-v, --version'
+  );
 
 program.command("schedule")
     .alias("s")
@@ -131,8 +150,6 @@ program.command('*').action(command => {
 
     process.exit(1);
 });
-
-program.version(pkg.version, "-v, --version");
 
 if (process.argv.length === 2) program.help();
 program.parse(process.argv);

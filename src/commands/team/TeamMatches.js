@@ -119,7 +119,7 @@ module.exports = {
                         maxLength: '0',
                     });
                 }
-                table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log(`\n  There's no match list for ${chalk.green(teamName)}.\n`);
+                table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log(`\n  There\'s no match list for ${chalk.green(teamName)}.\n`);
             }
         }
     }
