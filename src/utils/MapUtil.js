@@ -1,4 +1,5 @@
 const JsonUtil = require('./JsonUtil');
+const OwlUtil = require('./OwlUtil');
 
 /**
      * Finds the name of a map by ID
@@ -9,7 +10,7 @@ const JsonUtil = require('./JsonUtil');
         return new Promise((resolve, reject) => {
             body.forEach(element => {
                 if (element.guid == guid) {
-                    resolve(MessageUtil.capitalizeSentence(element.name.en_US));
+                    resolve(OwlUtil.capitalizeSentence(element.name.en_US));
                 }
             });
             reject(null);
@@ -21,11 +22,11 @@ const JsonUtil = require('./JsonUtil');
      * @param {string} guid the Map GUID
      */
     const getMapType = async (guid) => {
-        const body = await JsonUtil.parse(Endpoints.get("MAPS"));
+        const body = await JsonUtil.parse("https://api.overwatchleague.com/maps");
         return new Promise((resolve, reject) => {
             body.forEach(element => {
                 if (element.guid == guid) {
-                    resolve(MessageUtil.capitalize(element.type));
+                    resolve(OwlUtil.capitalize(element.type));
                 }
             });
             reject(null);

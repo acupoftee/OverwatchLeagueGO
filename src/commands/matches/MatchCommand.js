@@ -39,7 +39,7 @@ module.exports = {
         let slug = null;
         let table = null;
         let stage = "";
-        let mapStatus = "";
+        let currentMap, game, games;
         for (let i = 0; i < stageData.length; i++) {
             const stage = stageData[i];
             if (currentTime > stage.startDate && currentTime < stage.endDate) {
@@ -47,45 +47,55 @@ module.exports = {
             }
         }
 
-        const live = await JsonUtil.parse("https://api.overwatchleague.com/live-match?locale=en_US");
-        if (Object.keys(live.data.liveMatch).length !== 0) {
-            let match = live.data.liveMatch
-            if (live.data.liveMatch.state === 'IN_PROGRSS') {
-                for (let i = 0; i < match.games.length; i++) {
-                    game = match.games[i].number;
-                    currentMap = await MapUtil.getMap(match.games[i].attributes.mapGuid);
-                    currentMapType = await MapUtil.getMapType(match.games[i].attributes.mapGuid);
-                    break;
-                }
-                mapStatus = `Game ${game} of ${match.games.length} - Map: ${currentMap}`;
-            }
-        }
+        // const live = await JsonUtil.parse("https://api.overwatchleague.com/live-match");
+        // if (live.data.liveMatch !== undefined && Object.keys(live.data.liveMatch).length !== 0) {
+        //     let match = live.data.liveMatch;
+        //     //console.log(match);
+        //     games = match.games.length;
+        //     if (live.data.liveMatch.state === "IN_PROGRESS") {
+        //         for (let i = 0; i < match.games.length; i++) {
+        //             game = match.games[i].number;
+        //             currentMap = await MapUtil.getMap(match.games[i].attributes.mapGuid);
+        //             currentMapType = await MapUtil.getMapType(match.games[i].attributes.mapGuid);
+        //             break;
+        //         }
+        //     }
+        // }
 
-        body.data.stages.forEach(_stage => {
+        //console.log(mapStatus);
+
+        //console.log(mapStatus);
+        for(const _stage of body.data.stages) {
             if (_stage.slug === slug) {
                 stage = _stage.name;
-                _stage.weeks.forEach(_week => {
+                for (_week of _stage.weeks) {
                     if (currentTime > _week.startDate && currentTime < _week.endDate) {
                         stage = `${_stage.name} ${_week.name}`;
                         table = createTable([
                             align.center(chalk.hex('#fff').bold(`${stage} Matches`), 68),
-                            align.center(chalk.hex('#fff').bold("Status"), 25),
-                            align.center(chalk.hex('#fff').bold("Date"), 18)
+                            align.center(chalk.hex('#fff').bold("Status"), 18),
+                            align.center(chalk.hex('#fff').bold("Date"), 35)
                         ]);
-                        _week.matches.forEach(_match => {
+                        for (_match of _week.matches) {
                             let home = _match.competitors[0];
                             let away = _match.competitors[1];
                             let homeColor  = owl_colors.getPrimaryColor(home.abbreviatedName);
                             let awayColor = owl_colors.getPrimaryColor(away.abbreviatedName);
-                            let status = _match.status;
-                
-
+    
                             let homeFont = OwlUtil.colorIsLight(homeColor.rgb[0], homeColor.rgb[1], homeColor.rgb[2]) ? '#000' : '#fff';
                             let awayFont = OwlUtil.colorIsLight(awayColor.rgb[0], awayColor.rgb[1], awayColor.rgb[2]) ? '#000' : '#fff';
-
-                            if (status === "IN_PROGRESS") 
-                                status = mapStatus;
-                            
+                            games = _match.games.length;
+                            if (_match.status === 'IN_PROGRESS') {
+                                    for (let i = 0; i < _match.games.length; i++) {
+                                        if (_match.games[i].state === 'IN_PROGRESS') {
+                                            game = _match.games[i].number;
+                                            currentMap = await MapUtil.getMap(_match.games[i].attributes.mapGuid);
+                                            currentMapType = await MapUtil.getMapType(_match.games[i].attributes.mapGuid);
+                                            break;
+                                        }
+                                    }
+                            }
+                            let dateString = _match.status === 'IN_PROGRESS' ? `Map ${game} of ${games}: ${currentMap}` : new Date(_match.startDate).toLocaleString("en-US", options);
                             table.push({
                                 [getMatch(
                                     chalk.bgHex(homeColor.hex).hex(homeFont).bold(" " + home.name + " "),
@@ -94,13 +104,13 @@ module.exports = {
                                     _match.scores[1].value,
                                     _match.scores[0].value > _match.scores[1].value ? 1 : 0
                                 )]: [
-                                        align.center(chalk.hex("#fff")(status), 25),
-                                        align.center(chalk.hex("#fff")(new Date(_match.startDate).toLocaleString("en-US", options)), 18)
+                                        align.center(chalk.hex("#fff")(_match.status), 18),
+                                        align.center(chalk.hex("#fff")(dateString), 35)
                                     ]
                             });
-                        });
+                        }
                     }
-                })
+                }
                 spinner.stop();
                 cfonts.say(stage, {
                     font: 'block',
@@ -114,7 +124,7 @@ module.exports = {
                 });
                 table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log("\n  There are no Overwatch League matches this week.\n");
             }
-        })
+        }
     }
 }
 
