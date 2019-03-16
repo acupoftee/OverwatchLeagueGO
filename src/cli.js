@@ -132,5 +132,7 @@ program.command('*').action(command => {
     process.exit(1);
 });
 
+program.version(pkg.version, "-v, --version");
+
 if (process.argv.length === 2) program.help();
 program.parse(process.argv);
