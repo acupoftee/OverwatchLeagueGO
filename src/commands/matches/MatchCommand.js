@@ -47,24 +47,6 @@ module.exports = {
             }
         }
 
-        // const live = await JsonUtil.parse("https://api.overwatchleague.com/live-match");
-        // if (live.data.liveMatch !== undefined && Object.keys(live.data.liveMatch).length !== 0) {
-        //     let match = live.data.liveMatch;
-        //     //console.log(match);
-        //     games = match.games.length;
-        //     if (live.data.liveMatch.state === "IN_PROGRESS") {
-        //         for (let i = 0; i < match.games.length; i++) {
-        //             game = match.games[i].number;
-        //             currentMap = await MapUtil.getMap(match.games[i].attributes.mapGuid);
-        //             currentMapType = await MapUtil.getMapType(match.games[i].attributes.mapGuid);
-        //             break;
-        //         }
-        //     }
-        // }
-
-        //console.log(mapStatus);
-
-        //console.log(mapStatus);
         for(const _stage of body.data.stages) {
             if (_stage.slug === slug) {
                 stage = _stage.name;
@@ -104,7 +86,7 @@ module.exports = {
                                     _match.scores[1].value,
                                     _match.scores[0].value > _match.scores[1].value ? 1 : 0
                                 )]: [
-                                        align.center(chalk.hex("#fff")(_match.status), 18),
+                                        align.center(chalk.hex("#fff")(_match.status.replace("_", " ")), 18),
                                         align.center(chalk.hex("#fff")(dateString), 35)
                                     ]
                             });

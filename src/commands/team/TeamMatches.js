@@ -5,7 +5,7 @@ const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
 const stageData = require('../../utils/data/stages.json');
-const { JsonUtil, OwlUtil, Logger } = require('../../utils');
+const { JsonUtil, OwlUtil, Logger, MapUtil} = require('../../utils');
 
 const options = { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" };
 
@@ -46,6 +46,7 @@ module.exports = {
         let currentTime = new Date().getTime();
         let slug = null;
         let table = null;
+        let currentMap, game, games;
         for (let i = 0; i < stageData.length; i++) {
             const stage = stageData[i];
             if (currentTime > stage.startDate && currentTime < stage.endDate) {
@@ -56,14 +57,14 @@ module.exports = {
         table = createTable([
             align.center(chalk.hex('#fff').bold("Matches"), 68),
             align.center(chalk.hex('#fff').bold("Status"), 18),
-            align.center(chalk.hex('#fff').bold("Date"), 30)
+            align.center(chalk.hex('#fff').bold("Date"), 35)
         ]);
 
-        body.data.stages.forEach(_stage => {
+        for (const _stage of body.data.stages) {
             if (_stage.slug === slug) {
                 stage = _stage.name;
-                _stage.weeks.forEach(_week => {
-                    _week.matches.forEach(_match => {
+                for (const _week of _stage.weeks) {
+                    for (const _match of _week.matches) {
                         if (_match.competitors[0].id === teamId || _match.competitors[1].id === teamId) {
                             let home = _match.competitors[0];
                             let away = _match.competitors[1];
@@ -76,6 +77,18 @@ module.exports = {
                             secondaryColor = _match.competitors[0].id === teamId ? owl_colors.getSecondaryColor(home.abbreviatedName).hex : owl_colors.getSecondaryColor(away.abbreviatedName).hex;
                             let homeFont = OwlUtil.colorIsLight(homeColor.rgb[0], homeColor.rgb[1], homeColor.rgb[2]) ? '#000' : '#fff';
                             let awayFont = OwlUtil.colorIsLight(awayColor.rgb[0], awayColor.rgb[1], awayColor.rgb[2]) ? '#000' : '#fff';
+                            games = _match.games.length;
+                            if (_match.status === 'IN_PROGRESS') {
+                                    for (let i = 0; i < _match.games.length; i++) {
+                                        if (_match.games[i].state === 'IN_PROGRESS') {
+                                            game = _match.games[i].number;
+                                            currentMap = await MapUtil.getMap(_match.games[i].attributes.mapGuid);
+                                            currentMapType = await MapUtil.getMapType(_match.games[i].attributes.mapGuid);
+                                            break;
+                                        }
+                                    }
+                            }
+                            let dateString = _match.status === 'IN_PROGRESS' ? `Map ${game} of ${games}: ${currentMap}` : new Date(_match.startDate).toLocaleString("en-US", options);
                             table.push({
                                 [getMatch(
                                     chalk.bgHex(homeColor.hex).hex(homeFont).bold(" " + home.name + " "),
@@ -84,13 +97,13 @@ module.exports = {
                                     _match.scores[1].value,
                                     _match.scores[0].value > _match.scores[1].value ? 1 : 0
                                 )]: [
-                                        align.center(chalk.hex("#fff")(_match.status), 18),
-                                        align.center(chalk.hex("#fff")(new Date(_match.startDate).toLocaleString("en-US", options)), 30)
+                                        align.center(chalk.hex("#fff")(_match.status.replace("_", " ")), 18),
+                                        align.center(chalk.hex("#fff")(dateString), 35)
                                     ]
                             });
                         }
-                    });
-                })
+                    }
+                }
                 spinner.stop();
 
                 if (table.length) {
@@ -107,7 +120,7 @@ module.exports = {
                 }
                 table.length ? console.log(`${chalk.gray(table.toString())}\n`) : console.log(`\n  There's no match list for ${chalk.green(teamName)}.\n`);
             }
-        })
+        }
     }
 }
 
