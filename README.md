@@ -1,24 +1,55 @@
 <img src="https://acupoftee.github.io/images/owlshort.png">
 
-[![Build Status](https://travis-ci.com/acupoftee/OverwatchLeagueGO.svg?branch=master)](https://travis-ci.com/acupoftee/OverwatchLeagueGO) ![npm](https://img.shields.io/npm/v/owl-go.svg)
+[![Build Status](https://travis-ci.com/acupoftee/OverwatchLeagueGO.svg?branch=master)](https://travis-ci.com/acupoftee/OverwatchLeagueGO) ![npm](https://img.shields.io/npm/v/owl-go.svg) ![node](https://img.shields.io/node/v/owl-go.svg)
 # Overwatch League GO
 > Enjoy Overwatch League right from your desktop!
 
 Follow Overwatch League matches, teams, and players right on your console. Best CLI tool for Overwatch League fans and Engineers!
 
-## Install
+All Overwatch League data is from the [Overwatch League API](https://api.overwatchleague.com).
 
-To use OWL Go, Be sure to have Node v6.0.0 or higher. Then in your command prompt 
+NOTE: The Overwatch League API is not officially maintained by Blizzard. 
+
+## Installation
+
+To use OWL Go, Be sure to have Node v6.0.0 or higher. Then type the following in your command prompt: 
 ```
 $ npm install -g owl-go
 ```
+You can also install this inside a Docker container:
+```
+$ docker build -t owl-go:latest .
+$ docker run -it owl-go:latest
+```
+
+The container will display the schedule for the current week by default, but you can use a different command anytime. For example:
+```
+$ docker run -it owl-go:latest owl-go player geguri
+```
 ## Usage
 `owl-go` has the following commands:
-1. `teams` or `ts`
-2. `team` or `t`
-3. `player` or `p`
-4. `schedule` or `s`
-5. `standings` or `st`
+1. [`schedule` or `s`](#Schedule)
+2. [`teams` or `ts`](#Teams)
+3. [`team` or `t`](#Team)
+4. [`player` or `p`](#Player)
+5. [`standings` or `st`](#Standings)
+
+### Schedule
+See this weeks Overwatch League schedule here! Follow score updates and match progress from the current week for your favorite teams!
+```
+$ owl-go schedule
+```
+
+<!-- <img src ="https://acupoftee.github.io/images/owlgo/schedule.png"> -->
+<img src="https://thumbs.gfycat.com/SlimySpectacularCatbird-small.gif">
+
+Depending on the status of the game you chose, a different result will be shown. There are three kinds of statuses that may be displayed.
+
+| Status              | Example                                                                                                                                                                 | Description                                                                                                                                                             |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PENDING` | <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/pending.png">             | Shows **when the game starts**.  |
+| `IN_PROGRESS`      |<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/in%20progress.png">            | Shows **live game map status and score**!          |
+| `CONCLUDED`     | <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/concluded.png">             | Shows the final scoreboard of a match.                                                                                                          |
    
 ### Teams
 See all the teams competing in the Overwatch League this season!
@@ -90,26 +121,6 @@ $ owl-go player dafran,geguri -c
 
 <!-- <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/player_compare.png"> -->
 <img src="https://thumbs.gfycat.com/KnobbyExcitableKentrosaurus-small.gif">
-
-
-### Schedule
-See this weeks Overwatch League schedule here! Follow score updates and match progress from the current week for your favorite teams!
-
-
-```
-$ owl-go schedule
-```
-
-<!-- <img src ="https://acupoftee.github.io/images/owlgo/schedule.png"> -->
-<img src="https://thumbs.gfycat.com/SlimySpectacularCatbird-small.gif">
-
-Depending on the status of the game you chose, a different result will be shown. There are three kinds of statuses that may be displayed.
-
-| Status              | Example                                                                                                                                                                 | Description                                                                                                                                                             |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `PENDING` | <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/pending.png">             | Shows **when the game starts**.  |
-| `IN_PROGRESS`      |<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/in%20progress.png">            | Shows **live game map status and score**!          |
-| `CONCLUDED`     | <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/concluded.png">             | Shows the final scoreboard of a match.                                                                                                          |
 
 ### Standings
 See this weeks Overwatch League standings here! 

@@ -1,6 +1,6 @@
 {
   "name": "owl-go",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Command line interface for enjoying Oveerwatch League",
   "main": "lib/cli.js",
   "bin": {
