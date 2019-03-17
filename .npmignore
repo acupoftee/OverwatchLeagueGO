@@ -4,3 +4,4 @@ lib/
 webpack.config.js
 .git
 .DS_Store
+.travis.yml

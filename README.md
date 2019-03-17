@@ -1,5 +1,7 @@
 <img src="https://acupoftee.github.io/images/owlshort.png">
 
+[![Build Status](https://travis-ci.com/acupoftee/OverwatchLeagueGO.svg?branch=master)](https://travis-ci.com/acupoftee/OverwatchLeagueGO)
+
 # Overwatch League GO
 > Enjoy Overwatch League right from your desktop!
 
