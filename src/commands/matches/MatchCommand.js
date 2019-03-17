@@ -4,7 +4,6 @@ const chalk = require("chalk");
 const owl_colors = require('owl-colors');
 const ora = require('ora');
 const cfonts = require('cfonts');
-//const stageData = require('../../utils/data/stages.json');
 const { JsonUtil, OwlUtil, MapUtil } = require('../../utils');
 
 const options = { weekday: "short", hour: "2-digit", minute: "2-digit" };
