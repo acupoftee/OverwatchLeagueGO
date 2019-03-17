@@ -26,8 +26,7 @@ See all the teams competing in the Overwatch League this season!
 $ owl-go teams
 ```
 
-<!-- <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/teams.png" height="700"> -->
-<img src="assets/teamscommand.gif">
+<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/teams.png" height="700">
 
 ### Team
 Follow your favorite Overwatch League Teams!

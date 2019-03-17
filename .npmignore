@@ -1,8 +1,6 @@
 src/
 bin/
 lib/
-assets/
-# packed/
 webpack.config.js
 .git
 .DS_Store
