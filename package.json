@@ -1,6 +1,6 @@
 {
   "name": "owl-go",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Command line interface for enjoying Oveerwatch League",
   "main": "lib/cli.js",
   "bin": {
@@ -46,13 +46,10 @@
     "commander": "^2.19.0",
     "didyoumean": "^1.2.1",
     "is-async-supported": "^1.2.0",
-    "moment": "^2.24.0",
-    "moment-timezone": "^0.5.23",
     "node-emoji": "^1.10.0",
     "ora": "^3.2.0",
     "owl-colors": "0.0.10",
     "request": "^2.88.0",
-    "string-width": "^3.1.0",
     "stringz": "^1.0.0",
     "update-notifier": "^2.5.0",
     "wide-align": "^1.1.3"
