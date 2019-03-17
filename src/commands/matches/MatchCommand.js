@@ -78,7 +78,7 @@ module.exports = {
                                         }
                                     }
                             }
-                            let dateString = _match.status === 'IN_PROGRESS' ? `Map ${game} of ${games}: ${currentMap}` : new Date(_match.startDate).toLocaleString("en-US", options);
+                            let dateString = _match.status === 'IN_PROGRESS' && (game !== undefined || currentMap !== undefined) ? `Map ${game} of ${games}: ${currentMap}` : new Date(_match.startDate).toLocaleString("en-US", options);
                             table.push({
                                 [getMatch(
                                     chalk.bgHex(homeColor.hex).hex(homeFont).bold(" " + home.name + " "),

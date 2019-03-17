@@ -25,7 +25,7 @@ if (!isAsyncSupported()) {
   
   program.version(
     `\n${chalk`{bold.hex('#f80') OWL}`} 'GO' version: ${
-      pkg.version
+        pkg.version
     }\n`,
     '-v, --version'
   );
@@ -95,7 +95,7 @@ program.on('--help', () => {
     console.log('');
     console.log('');
     console.log(
-        `  Welcome to ${chalk`{hex('#218ffe') OWL}`} ${chalk.red('GO')} !`
+        `  Welcome to ${chalk`{bold.hex('#f80') OWL}`} GO !`
     );
     console.log('');
     console.log(
@@ -128,7 +128,7 @@ program.on('--help', () => {
         )}`
     );
     console.log(
-        `  Or enter ${chalk.green('owl-go game -h')}, ${chalk.green(
+        `  Or enter ${chalk.green('owl-go schedule -h')}, ${chalk.green(
             'owl-go player -h'
         )} to get more helpful information.`
     );
