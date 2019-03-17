@@ -1,7 +1,6 @@
 <img src="https://acupoftee.github.io/images/owlshort.png">
 
-[![Build Status](https://travis-ci.com/acupoftee/OverwatchLeagueGO.svg?branch=master)](https://travis-ci.com/acupoftee/OverwatchLeagueGO)
-
+[![Build Status](https://travis-ci.com/acupoftee/OverwatchLeagueGO.svg?branch=master)](https://travis-ci.com/acupoftee/OverwatchLeagueGO) ![npm](https://img.shields.io/npm/v/owl-go.svg)
 # Overwatch League GO
 > Enjoy Overwatch League right from your desktop!
 
@@ -43,8 +42,8 @@ $ owl-go team bostonuprising -i
 ```
 ***NOTE***: *Don't add spaces between team names!*
 
-<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/team.png" height="500">
-
+<!-- <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/team.png" height="500"> -->
+<img src="https://thumbs.gfycat.com/VariableConsciousBurro-small.gif">
 
 ##### `-m` or `--matches`
 Look up your teams match history for the season.
@@ -53,7 +52,8 @@ Look up your teams match history for the season.
 $ owl-go team bostonuprising -m
 ```
 
-<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/team_matches.png">
+<!-- <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/team_matches.png"> -->
+<img src="https://thumbs.gfycat.com/WellgroomedFocusedAplomadofalcon-small.gif">
 
 ##### `-s` or `--schedule`
 Look up your teams schedule for upcoming matches.
@@ -62,7 +62,8 @@ Look up your teams schedule for upcoming matches.
 $ owl-go team bostonuprising -s
 ```
 
-<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/team_schedule.png">
+<!-- <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/team_schedule.png"> -->
+<img src="https://thumbs.gfycat.com/ImprobableThisLark-small.gif">
 
 ### Player
 Follow your favorite Overwatch League Player!
@@ -75,7 +76,8 @@ Look up your favorite player and see their league stats;
 $ owl-go player dafran -i
 ```
 
-<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/player.png">
+<!-- <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/player.png"> -->
+<img src="https://thumbs.gfycat.com/EnchantedWindyAardwolf-small.gif">
 
 
 ##### `-c` or `--compate`
@@ -86,7 +88,8 @@ $ owl-go player dafran,geguri -c
 ```
 ***NOTE***: *Don't add spaces between player names!*
 
-<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/player_compare.png">
+<!-- <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/player_compare.png"> -->
+<img src="https://thumbs.gfycat.com/KnobbyExcitableKentrosaurus-small.gif">
 
 
 ### Schedule
@@ -97,7 +100,8 @@ See this weeks Overwatch League schedule here! Follow score updates and match pr
 $ owl-go schedule
 ```
 
-<img src ="https://acupoftee.github.io/images/owlgo/schedule.png">
+<!-- <img src ="https://acupoftee.github.io/images/owlgo/schedule.png"> -->
+<img src="https://thumbs.gfycat.com/SlimySpectacularCatbird-small.gif">
 
 Depending on the status of the game you chose, a different result will be shown. There are three kinds of statuses that may be displayed.
 
@@ -114,7 +118,8 @@ See this weeks Overwatch League standings here!
 $ owl-go standings
 ```
 
-<img src ="https://acupoftee.github.io/images/owlgo/stand.png" height="500">
+<!-- <img src ="https://acupoftee.github.io/images/owlgo/stand.png" height="500"> -->
+<img src="https://thumbs.gfycat.com/InfantileHarmfulCrane-small.gif">
 
 ## Related Repos:
 - [OverwatchLeagueColors](https://github.com/acupoftee/OverwatchLeagueColors)
