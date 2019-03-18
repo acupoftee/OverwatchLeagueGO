@@ -1,6 +1,6 @@
 {
   "name": "owl-go",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Command line interface for enjoying Oveerwatch League",
   "main": "lib/cli.js",
   "bin": {
@@ -40,6 +40,7 @@
   "homepage": "https://github.com/acupoftee/OverwatchLeagueGO#readme",
   "dependencies": {
     "async-to-gen": "^1.4.0",
+    "blessed": "^0.1.81",
     "cfonts": "^2.4.2",
     "chalk": "^2.4.2",
     "cli-table3": "^0.5.1",

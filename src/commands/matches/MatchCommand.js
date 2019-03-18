@@ -6,7 +6,7 @@ const ora = require('ora');
 const cfonts = require('cfonts');
 const { JsonUtil, OwlUtil, MapUtil } = require('../../utils');
 
-const options = { weekday: "short", hour: "2-digit", minute: "2-digit" };
+const options = { month: "short", weekday: "short", day: "numeric", hour: "2-digit", minute: "2-digit" };
 const stageData = OwlUtil.stageData;
 
 const getMatch = (team_1, team_2, result_1, result_2, result) =>
@@ -51,7 +51,7 @@ module.exports = {
             if (_stage.slug === slug) {
                 stage = _stage.name;
                 for (_week of _stage.weeks) {
-                    if (currentTime > _week.startDate && currentTime < _week.endDate) {
+                    if (currentTime < _week.endDate) {
                         stage = `${_stage.name} ${_week.name}`;
                         table = createTable([
                             align.center(chalk.hex('#fff').bold(`${stage} Matches`), 68),
@@ -91,6 +91,7 @@ module.exports = {
                                     ]
                             });
                         }
+                        break;
                     }
                 }
                 spinner.stop();

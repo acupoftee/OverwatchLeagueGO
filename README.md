@@ -48,7 +48,7 @@ Depending on the status of the game you chose, a different result will be shown.
 | Status              | Example                                                                                                                                                                 | Description                                                                                                                                                             |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `PENDING` | <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/pending.png">             | Shows **when the game starts**.  |
-| `IN_PROGRESS`      |<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/in%20progress.png">            | Shows **live game map status and score**!          |
+| `IN_PROGRESS`      |<img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/progress.png">            | Shows **live game map status and score**!          |
 | `CONCLUDED`     | <img src="https://raw.githubusercontent.com/acupoftee/acupoftee.github.io/master/images/owlgo/concluded.png">             | Shows the final scoreboard of a match.                                                                                                          |
    
 ### Teams
