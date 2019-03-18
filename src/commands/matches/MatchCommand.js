@@ -31,7 +31,7 @@ const createTable = headers => {
 module.exports = {
     async matches() {
         const spinner = ora(
-            'Loading this week\'s schedule...'
+            'Loading schedule...'
         ).start();
 
         const body = await JsonUtil.parse("https://api.overwatchleague.com/schedule?locale=en_US");
