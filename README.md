@@ -111,7 +111,7 @@ $ owl-go player dafran -i
 <img src="https://thumbs.gfycat.com/EnchantedWindyAardwolf-small.gif">
 
 
-##### `-c` or `--compate`
+##### `-c` or `--compare`
 Compare the stats of two Overwatch League players.
 
 ```
