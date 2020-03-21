@@ -133,4 +133,5 @@ $ owl-go standings
 <img src="https://thumbs.gfycat.com/InfantileHarmfulCrane-small.gif">
 
 ## Inspiration:
-[NBA Go](https://github.com/xxhomey19/nba-go)
+
+This app was inspired by [NBA Go by xhomeyy](https://github.com/xxhomey19/nba-go). Thank you for making such a cool app to learn from! I admire your love of sports and wish to do the same with esports.
