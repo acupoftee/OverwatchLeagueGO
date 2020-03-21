@@ -132,5 +132,5 @@ $ owl-go standings
 <!-- <img src ="https://acupoftee.github.io/images/owlgo/stand.png" height="500"> -->
 <img src="https://thumbs.gfycat.com/InfantileHarmfulCrane-small.gif">
 
-## Related Repos:
-- [OverwatchLeagueColors](https://github.com/acupoftee/OverwatchLeagueColors)
+## Inspiration:
+[NBA Go](https://github.com/xxhomey19/nba-go)
